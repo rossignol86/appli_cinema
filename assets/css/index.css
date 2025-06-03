@@ -10,7 +10,8 @@ body {
 
 h3 {
     font-family: 'WDXL Lubrifont TC', sans-serif;
-    font-size: 1.8rem;
+    font-size: 3rem;
+    line-height: 3rem;
     font-weight: 900;
     color:brown;
     text-align: center;
@@ -85,7 +86,6 @@ p {
     box-shadow: 0 8px 16px rgba(0,0,0,0.2);
 }
 
-
 .film img {
     width: 100%;
     height: auto;
@@ -102,6 +102,11 @@ p {
 .film strong {
     color:brown;
 }
+
+
+
+
+
 
 .quantite-container {
     display: flex;

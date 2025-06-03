@@ -19,7 +19,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=WDXL+Lubrifont+TC&display=swap" rel="stylesheet">
 
   <!-- Styles -->
   <link rel="stylesheet" href="./css/reset.css">
@@ -86,8 +86,9 @@
           <h3>${film.titre}</h3>
           <p><strong>Prix :</strong> ${prixNum.toFixed(2)} €</p>
           <p><strong>Catégorie :</strong> ${film.categorie}</p>
+
           <div class="quantite-container">
-            <label for="quantite-${index}">Tickets :</label>
+            <label for="quantite-${index}">Nombre de place (s)</label>
             <select id="quantite-${index}">
               ${Array.from({length: 51}, (_, i) => `<option value="${i}">${i}</option>`).join("")}
             </select>

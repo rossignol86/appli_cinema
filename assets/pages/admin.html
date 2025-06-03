@@ -13,6 +13,10 @@
   <link rel="stylesheet" href="../css/admin.css">
   <link rel="stylesheet" href="../css/headerfooter.css">
   <link rel="icon" href="../favicon.ico">
+
+  <style>
+    
+  </style>
 </head>
 <body>
 
@@ -93,8 +97,8 @@
       afficherFilms();
 
       // Réinitialisation du formulaire
-      document.getElementById("titre").value = "";
       document.getElementById("affiche").value = "";
+      document.getElementById("titre").value = "";
       document.getElementById("resume").value = "";
       document.getElementById("prix").value = "";
       
@@ -109,8 +113,8 @@
         const div = document.createElement("div");
         div.className = "film";
         div.innerHTML = `
-          <h2>${film.titre}</h2>
           <img src="${film.affiche}" alt="${film.titre}" />
+          <h2>${film.titre}</h2>
           <p> <span style="color:#1e90ff; font-weight: bold;"> Prix :</span> ${film.prix} €</p>
           <p> <span style="color:#1e90ff; font-weight: bold;"> Résumé :</span> ${film.categorie}</p>
           <button onclick="modifierFilm(${index})">Modifier</button>
