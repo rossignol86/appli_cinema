@@ -1,0 +1,135 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", sans-serif;
+    background: url('../images/photos/battlefront_2_01_1920x1080.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
+}
+
+h3 {
+    font-family: 'WDXL Lubrifont TC', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #0024f3;
+    text-align: center;
+    margin-top: 20px;
+}
+
+p {
+    font-family: "Inter", sans-serif;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-weight: 400;
+    text-align: left;
+    font-size: 2rem;
+    line-height: 1.5rem;
+}
+
+/* Bandeau cinéma global */
+.cinema-banner {
+    background: linear-gradient(to right, #000000, #1a1a1a);
+    color: #ffe81f;
+    padding: 2rem;
+    text-align: center;
+    border: 3px solid #ffe81f;
+    margin: 4rem auto;
+    max-width: 90%;
+    border-radius: 12px;
+    box-shadow: 0 0 15px #ffe81f;
+    font-family: 'Bebas Neue', 'Arial Black', sans-serif;
+}
+
+/* Titre principal */
+.cinema-banner h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 5px #000;
+}
+
+/* Slogan accrocheur */
+.cinema-banner h2 {
+    font-size: 1.5rem;
+    color: #ffffff;
+    background: #d10000;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(209, 0, 0, 0.8);
+    text-transform: uppercase;
+    text-shadow: 2px 2px 5px #000;
+}
+
+#filmsContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 4rem;
+    width: 100%;
+    max-width: 1200px;
+    justify-items: center;
+    margin: 0 auto 20px;
+}
+
+.film {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 1rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+    width: 380px;
+}
+
+.film:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+
+.film img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.film p {
+    font-size: 1.2rem;
+    color: #555;
+    margin: 0.5rem 0;
+}
+
+.film strong {
+    color: #1e90ff;
+}
+
+.quantite-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+    font-family: "Inter", sans-serif;
+    font-size: 1.5rem;
+}
+
+.quantite-container label {
+    font-weight: bold;
+    color: #000000;
+    text-align: right;
+    font-size: 1.2rem;
+}
+
+.quantite-container select {
+    padding: 0.3rem;
+    font-size: 1rem;
+    border-radius: 6px;
+}
+
+.total {
+    font-size: 1.8rem;
+    line-height: 4rem;
+    font-weight: bold;
+    text-align: center;
+    color: #d10000;
+    font-family: "Inter", sans-serif;
+}

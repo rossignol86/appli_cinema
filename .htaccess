@@ -1,0 +1,22 @@
+# utiliser index.html comme page d'accueil
+DirectoryIndex index.html
+
+# empêcher l'indexation des répertoires
+Options -Indexes
+
+# rediriger les erreurs 404 vers index.html
+ErrorDocument 404 /index.html
+
+# Forcer UTF-8 pour éviter les caracteres spéciaux mal interprétés
+AddDefaultCharset UTF-8
+
+# Autoriser la mis en cache 
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/html "access plus 1 day"
+    ExpiresByType text/css "access plus 1 week"
+    ExpiresByType application/javascript "access plus 1 week"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/svg+xml "access plus 1 month"
+</IfModule>

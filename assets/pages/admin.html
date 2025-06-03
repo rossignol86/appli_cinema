@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=WDXL+Lubrifont+TC&display=swap" rel="stylesheet">
+
+  <title>Admin Cinéma</title>
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="../css/headerfooter.css">
+  <link rel="icon" href="../favicon.ico">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <img src="../images/logo/logo.jpg" alt="Logo Cinéma" class="logo">
+    <a href="../../index.html">Films</a>
+    <a href="../pages/membre.html">Membre</a>
+    <a href="../pages/connexion.html">Connexion</a>
+  </nav>
+
+  <main class="container">
+
+    <h1>Interface d’administration <br>
+      Gestion des films et informations</h1>
+    <!-- FORMULAIRE -->
+     <section>
+      <div class="card">
+        <input type="text" id="titre" placeholder="Nom du film" />
+        <input type="text" id="resume" placeholder="Résumé du film" />
+        <input type="file" id="affiche" accept="image/*" />
+        <input type="number" id="prix" placeholder="Prix en €" />
+        <button id="afficherBtn">Afficher</button>
+      </div>
+    </section>
+
+    <!-- ZONE D’AFFICHAGE DES FILMS -->
+      <section class="film-liste">
+        <div id="filmsContainer" ></div>
+      </section>
+  </main>
+
+  <script>
+
+    const defaultImage = "https://via.placeholder.com/120x180?text=Affiche";
+
+  
+    // Fonction pour convertir image en base64
+    function getBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = (error) => reject(error);
+      });
+    }
+
+    // Affichage initial des films
+    window.onload = afficherFilms;
+
+    document.getElementById("afficherBtn").addEventListener("click", async () => {
+      const titre = document.getElementById("titre").value.trim();
+      const fichier = document.getElementById("affiche").files[0];
+      const categorie = document.getElementById("resume").value.trim();
+      const prix = document.getElementById("prix").value.trim();
+      
+
+      if (!titre || !prix || !categorie) {
+        alert("Veuillez remplir tous les champs.");
+        return;
+      }
+
+      let afficheBase64 = defaultImage;
+
+      if (fichier) {
+        try {
+          afficheBase64 = await getBase64(fichier);
+        } catch (error) {
+          console.error("Erreur de conversion d’image :", error);
+          alert("Erreur de chargement de l’image, une image par défaut sera utilisée.");
+        }
+      }
+
+      const film = { titre, affiche: afficheBase64, prix, categorie };
+      const films = JSON.parse(localStorage.getItem("films")) || [];
+      films.push(film);
+      localStorage.setItem("films", JSON.stringify(films));
+      afficherFilms();
+
+      // Réinitialisation du formulaire
+      document.getElementById("titre").value = "";
+      document.getElementById("affiche").value = "";
+      document.getElementById("resume").value = "";
+      document.getElementById("prix").value = "";
+      
+    });
+
+    function afficherFilms() {
+      const films = JSON.parse(localStorage.getItem("films")) || [];
+      const container = document.getElementById("filmsContainer");
+      container.innerHTML = "";
+
+      films.forEach((film, index) => {
+        const div = document.createElement("div");
+        div.className = "film";
+        div.innerHTML = `
+          <h2>${film.titre}</h2>
+          <img src="${film.affiche}" alt="${film.titre}" />
+          <p> <span style="color:#1e90ff; font-weight: bold;"> Prix :</span> ${film.prix} €</p>
+          <p> <span style="color:#1e90ff; font-weight: bold;"> Résumé :</span> ${film.categorie}</p>
+          <button onclick="modifierFilm(${index})">Modifier</button>
+          <button onclick="supprimerFilm(${index})">Supprimer</button>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function supprimerFilm(index) {
+      const films = JSON.parse(localStorage.getItem("films")) || [];
+      films.splice(index, 1);
+      localStorage.setItem("films", JSON.stringify(films));
+      afficherFilms();
+    }
+
+    function modifierFilm(index) {
+      const films = JSON.parse(localStorage.getItem("films")) || [];
+      const film = films[index];
+      document.getElementById("titre").value = film.titre;
+      document.getElementById("prix").value = film.prix;
+      document.getElementById("resume").value = film.categorie;
+      // On ne peut pas recharger une image dans un input file
+      films.splice(index, 1);
+      localStorage.setItem("films", JSON.stringify(films));
+      afficherFilms();
+    }
+  </script>
+</body>
+</html>
