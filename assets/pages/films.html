@@ -58,7 +58,7 @@
         <a href="https://rossignolfranck.alwaysdata.net/portfolio/" target="_blank">Franck Rossignol</a> – Maquette sur FIGMA – Code sur Visual Studio Code <br>
         Afpa – Projet Application "Mini CGR" avec CI/CD <br>
         &copy; 2025 @cinéma – Tous droits réservés – 
-        <a href="../pages/admin.html" onclick="connexionAdmin()">Gestion du site</a> –
+        <a href="#" onclick="connexionAdmin(); return false;">Gestion du site</a> –
         <a href="../pages/apropos.html">À propos</a> –
         <a href="../pages/mentionslegales.html">Mentions légales</a> –
         <a href="../pages/cgv.html">Conditions générales</a>
@@ -111,10 +111,14 @@
 
 
     function connexionAdmin() {
-    const nom = prompt("Entrez votre nom d'utilisateur :");
-    const mdp = prompt("Entrez votre mot de passe :");
+    const nom = prompt("Entrez votre nom d'utilisateur :")?.trim();
+    const mdp = prompt("Entrez votre mot de passe :")?.trim();
 
-    // Exemple de vérification simple (à améliorer en vrai projet)
+    if (!nom || !mdp) {
+      alert("Champs obligatoires !");
+      return;
+    }
+
     if (nom === "franck" && mdp === "1234") {
       window.location.href = "./assets/pages/admin.html";
     } else {
