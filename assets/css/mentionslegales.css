@@ -1,0 +1,61 @@
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f9f9f9;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #111;
+  padding: 1rem;
+}
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+main.legal-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+main h1 {
+  font-size: 2.2rem;
+  color: #1a1a1a;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+section {
+    font-family: "Inter", sans-serif;
+  margin-bottom: 1.5rem;
+}
+
+section h2 {
+  font-size: 1.4rem;
+  color: #222;
+  margin-bottom: 0.5rem;
+}
+
+a {
+font-family: "Inter", sans-serif;
+  color: #c9184a;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
