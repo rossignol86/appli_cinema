@@ -24,33 +24,75 @@
   <!-- Styles -->
   <link rel="stylesheet" href="./css/reset.css">
   <link rel="stylesheet" href="./assets/css/index.css">
-  <link rel="stylesheet" href="./assets/css/headerfooter.css">
 
   <title>@ Cinéma - Films à l’affiche et réservations</title>
 </head>
 <body>
   <header>
     <nav class="navbar" role="navigation" aria-label="Menu principal">
-      <a href="./index.html">
-        <img src="./assets/images/logo/logo.jpg" alt="Logo du cinéma - Accueil" class="logo">
+      <a><img src="./assets/images/logo/logo.jpg" alt="Logo du cinéma - Accueil" class="logo">
       </a>
-      <a>Films</a>
-      <a href="../pages/membre.html">Membre</a>
-      <a href="../pages/connexion.html">Connexion</a>
     </nav>
   </header>
 
-  <main>
-    <section class="cinema-banner">
-      <h1>Cette semaine au cinéma : vivez l’aventure STAR WARS en famille ou entre amis</h1>
-      <h2>Réservez dès maintenant, les places sont limitées !</h2>
-    </section>
 
-    <section aria-labelledby="filmsContainerTitle">
-      <h2 id="filmsContainerTitle" class="sr-only">Liste des films disponibles</h2>
-      <div id="filmsContainer" class="films-container"></div>
-    </section>
-  </main>
+
+<main>
+  <section class="intro">
+  <h1>🎬 Bienvenue dans l’univers @Cinéma</h1>
+  <p>
+    Explorez les dernières sorties, réservez vos places en un clic et vivez le cinéma autrement.  
+    Connectez-vous si vous êtes déjà membre, ou créez votre compte pour découvrir toutes l'univers de notre cinéma atypique.
+  </p>
+</section>
+
+
+
+  <!-- Groupe des deux cards côte à côte -->
+  <section class="cards-container">
+    <!-- Connexion Adhérent -->
+    <div class="card">
+      <h2>Connexion Adhérent</h2>
+      <form id="form-connexion">
+        <input type="email" placeholder="Email" required>
+        <input type="password" placeholder="Mot de passe" required>
+        <button type="submit">Se connecter</button>
+      </form>
+    </div>
+
+    <!-- Inscription Non-Adhérent -->
+    <div class="card">
+      <h2>Inscription</h2>
+      <form id="form-inscription">
+        <input type="text" placeholder="Nom" required>
+        <input type="email" placeholder="Email" required>
+        <input type="password" placeholder="Mot de passe" required>
+        <button type="submit">S'inscrire</button>
+        <p id="message-inscription"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- Carrousel d'affiches de films -->
+  <section class="carousel">
+    <div class="carousel-track">
+      <img src="./assets/images/films/la-menace-fantome.jpg" alt="Affiche du film La menace fantome de STAR WARS">
+      <img src="./assets/images/films/reveildelaforce.jpg" alt="Affiche du film Le reveil de la Force de STAR WARS">
+      <img src="./assets/images/films/rogueone.jpg" alt="Affiche du film Rogue One de STAR WARS">
+      <img src="./assets/images/films/lattaque desclones.jpg" alt="Affiche du film L'attaque des clones  de STAR WARS">
+      <img src="./assets/images/films/mandalorian.jpg" alt="Affiche du film Le Mandalorian de STAR WARS">
+      <img src="./assets/images/films/le-dernier-jedi.jpg" alt="Affiche du film Le dernier JEDI de STAR WARS">
+      <!-- Répétition pour effet de boucle fluide -->
+      <img src="./assets/images/films/la-menace-fantome.jpg" alt="Affiche du film La menace fantome de STAR WARS">
+      <img src="./assets/images/films/reveildelaforce.jpg" alt="Affiche du film Le reveil de la Force de STAR WARS">
+      <img src="./assets/images/films/rogueone.jpg" alt="Affiche du film Rogue One de STAR WARS">
+      <img src="./assets/images/films/lattaque desclones.jpg" alt="Affiche du film L'attaque des clones  de STAR WARS">
+      <img src="./assets/images/films/mandalorian.jpg" alt="Affiche du film Le Mandalorian de STAR WARS">
+      <img src="./assets/images/films/le-dernier-jedi.jpg" alt="Affiche du film Le dernier JEDI de STAR WARS">
+    </div>
+  </section>
+</main>
+
 
   <footer class="footer-content">
     <div>
@@ -58,7 +100,7 @@
         <a href="https://rossignolfranck.alwaysdata.net/portfolio/" target="_blank">Franck Rossignol</a> – Maquette sur FIGMA – Code sur Visual Studio Code <br>
         Afpa – Projet Application "Mini CGR" avec CI/CD <br>
         &copy; 2025 @cinéma – Tous droits réservés – 
-        <a href="./assets/pages/admin.html">Gestion du site</a> –
+        <a href="./assets/pages/admin.html" onclick="connexionAdmin()">Gestion du site</a> –
         <a href="./assets/pages/apropos.html">À propos</a> –
         <a href="./assets/pages/mentions-legales.html">Mentions légales</a> –
         <a href="./assets/pages/cgv.html">Conditions générales</a>
@@ -67,47 +109,58 @@
   </footer>
 
   <script>
-    function afficherFilms() {
-      const films = JSON.parse(localStorage.getItem("films")) || [];
-      const container = document.getElementById("filmsContainer");
-      container.innerHTML = "";
+  // Connexion adhérent
+  document.getElementById('form-connexion').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const email = this.querySelector('input[type="email"]').value;
+    const mdp = this.querySelector('input[type="password"]').value;
 
-      if (films.length === 0) {
-        container.innerHTML = "<p>Aucun film enregistré pour le moment.</p>";
-        return;
-      }
-
-      films.forEach((film, index) => {
-        const prixNum = parseFloat(film.prix);
-        const div = document.createElement("article");
-        div.className = "film";
-        div.innerHTML = `
-          <img src="${film.affiche}" alt="Affiche du film ${film.titre}" />
-          <h3>${film.titre}</h3>
-          <p><strong>Prix :</strong> ${prixNum.toFixed(2)} €</p>
-          <p><strong>Catégorie :</strong> ${film.categorie}</p>
-
-          <div class="quantite-container">
-            <label for="quantite-${index}">Nombre de place (s)</label>
-            <select id="quantite-${index}">
-              ${Array.from({length: 51}, (_, i) => `<option value="${i}">${i}</option>`).join("")}
-            </select>
-          </div>
-          <span class="total" id="total-${index}">Total : 0.00 €</span>
-        `;
-        container.appendChild(div);
-
-        const select = div.querySelector(`#quantite-${index}`);
-        const totalEl = div.querySelector(`#total-${index}`);
-        select.addEventListener("change", () => {
-          const quantite = parseInt(select.value);
-          const total = prixNum * quantite;
-          totalEl.textContent = `Total : ${total.toFixed(2)} €`;
-        });
-      });
+    if (email && mdp) {
+      // Simule la connexion (tu peux plus tard vérifier dans le localStorage)
+      window.location.href = "./assets/pages/films.html";
     }
+  });
 
-    window.onload = afficherFilms;
-  </script>
+  // Inscription non-adhérent
+  document.getElementById('form-inscription').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const nom = this.querySelector('input[type="text"]').value;
+    const email = this.querySelector('input[type="email"]').value;
+    const mdp = this.querySelector('input[type="password"]').value;
+
+    if (nom && email && mdp) {
+      const utilisateur = {
+        nom: nom,
+        email: email,
+        motdepasse: mdp
+      };
+
+      // Enregistre dans le localStorage
+      localStorage.setItem('utilisateur_' + email, JSON.stringify(utilisateur));
+
+      // Message de confirmation
+      document.getElementById('message-inscription').textContent = "Inscription réussie ! Redirection en cours...";
+      
+      setTimeout(() => {
+        window.location.href = "./assets/pages/films.html";
+      }, 2000);
+    }
+  });
+
+  // Fonction de connexion admin
+    function connexionAdmin() {
+    const nom = prompt("Entrez votre nom d'utilisateur :");
+    const mdp = prompt("Entrez votre mot de passe :");
+
+    // Exemple de vérification simple (à améliorer en vrai projet)
+    if (nom === "franck" && mdp === "1234") {
+      window.location.href = "./assets/pages/admin.html";
+    } else {
+      alert("Accès refusé. Nom ou mot de passe incorrect.");
+    }
+  }
+</script>
+
+
 </body>
 </html>

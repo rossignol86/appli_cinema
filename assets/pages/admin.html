@@ -23,7 +23,7 @@
   <!-- NAVBAR -->
   <nav class="navbar">
     <img src="../images/logo/logo.jpg" alt="Logo Cinéma" class="logo">
-    <a href="../../index.html">Films</a>
+    <a href="../pages/films.html">Films</a>
     <a href="../pages/membre.html">Membre</a>
     <a href="../pages/connexion.html">Connexion</a>
   </nav>
@@ -70,11 +70,11 @@
     document.getElementById("afficherBtn").addEventListener("click", async () => {
       const titre = document.getElementById("titre").value.trim();
       const fichier = document.getElementById("affiche").files[0];
-      const categorie = document.getElementById("resume").value.trim();
+      const synopsis = document.getElementById("resume").value.trim();
       const prix = document.getElementById("prix").value.trim();
       
 
-      if (!titre || !prix || !categorie) {
+      if (!titre || !prix || !synopsis) {
         alert("Veuillez remplir tous les champs.");
         return;
       }
@@ -90,7 +90,7 @@
         }
       }
 
-      const film = { titre, affiche: afficheBase64, prix, categorie };
+      const film = { titre, affiche: afficheBase64, prix, synopsis };
       const films = JSON.parse(localStorage.getItem("films")) || [];
       films.push(film);
       localStorage.setItem("films", JSON.stringify(films));
@@ -116,7 +116,7 @@
           <img src="${film.affiche}" alt="${film.titre}" />
           <h2>${film.titre}</h2>
           <p> <span style="color:#1e90ff; font-weight: bold;"> Prix :</span> ${film.prix} €</p>
-          <p> <span style="color:#1e90ff; font-weight: bold;"> Résumé :</span> ${film.categorie}</p>
+          <p> <span style="color:#1e90ff; font-weight: bold;"> Résumé :</span> ${film.synopsis}</p>
           <button onclick="modifierFilm(${index})">Modifier</button>
           <button onclick="supprimerFilm(${index})">Supprimer</button>
         `;
@@ -136,7 +136,7 @@
       const film = films[index];
       document.getElementById("titre").value = film.titre;
       document.getElementById("prix").value = film.prix;
-      document.getElementById("resume").value = film.categorie;
+      document.getElementById("resume").value = film.synopsis;
       // On ne peut pas recharger une image dans un input file
       films.splice(index, 1);
       localStorage.setItem("films", JSON.stringify(films));
