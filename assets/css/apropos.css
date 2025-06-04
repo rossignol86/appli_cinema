@@ -30,15 +30,24 @@ h2 {
 }
 
 ul {
+  font-family: "Inter", sans-serif;
   padding-left: 1.5rem;
   list-style-type: disc;
 }
 
 a {
+  font-family: "Inter", sans-serif;
   color: #c9184a;
   text-decoration: none;
 }
 
 a:hover {
   text-decoration: underline;
+}
+
+p {
+  font-family: "Inter", sans-serif;
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 1rem;
 }

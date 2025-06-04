@@ -57,7 +57,7 @@ main {
 
 .intro {
   text-align: center;
-  max-width: 900px;
+  max-width: 80%;
   margin: 0 auto;
 }
 
@@ -154,9 +154,10 @@ main {
 
 @media (max-width: 600px) {
   .navbar {
+    justify-content: center;
     flex-direction: column;
-    align-items: flex-start;
-    margin: 0 auto 20px;
+    align-items: center;
+    margin: 0 auto;
   }
 
   .navbar a {
@@ -166,6 +167,11 @@ main {
     text-align: center;
     font-size: 1.5rem;
   }
+
+  .navbar img.logo {
+    height: 70px;
+    justify-content: center;
+    margin: 0 auto;}
 
   .cards-container {
     flex-direction: column;
