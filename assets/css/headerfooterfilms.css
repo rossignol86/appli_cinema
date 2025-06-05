@@ -9,7 +9,6 @@ body {
 }
 
 .navbar {
-    /* background-color: #111; */
     color: white;
     display: flex;
     flex-wrap: wrap;
