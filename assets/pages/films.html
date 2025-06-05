@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=WDXL+Lubrifont+TC&display=swap" rel="stylesheet">
-
+  
   <!-- Styles -->
   <link rel="stylesheet" href="../css/reset.css">
   <link rel="stylesheet" href="../css/films.css">
@@ -37,7 +37,6 @@
       </a>
       <a href="../pages/films.html">Films</a>
       <a href="../pages/adherent.html">Adhérent</a>
-      <!-- <a href="../pages/connexion.html">Connexion</a> -->
     </nav>
   </header>
 
@@ -89,44 +88,63 @@
           <p><strong>Synopsis :</strong> ${film.synopsis}</p>
 
           <div class="quantite-container">
-            <label for="quantite-${index}">Nombre de place (s)</label>
+            <label for="quantite-${index}">Nombre de place(s)</label>
             <select id="quantite-${index}">
               ${Array.from({length: 51}, (_, i) => `<option value="${i}">${i}</option>`).join("")}
             </select>
           </div>
-          <span class="total" id="total-${index}">Total : 0.00 €</span>
+
+          <div class="total-et-btn">
+            <span class="total" id="total-${index}">Total : 0.00 €</span>
+            <button class="btn-commander" id="commander-${index}">COMMANDER</button>
+          </div>
         `;
         container.appendChild(div);
 
         const select = div.querySelector(`#quantite-${index}`);
         const totalEl = div.querySelector(`#total-${index}`);
+        const btnCommander = div.querySelector(`#commander-${index}`);
+
         select.addEventListener("change", () => {
           const quantite = parseInt(select.value);
           const total = prixNum * quantite;
           totalEl.textContent = `Total : ${total.toFixed(2)} €`;
         });
+
+        btnCommander.addEventListener("click", () => {
+          const quantite = parseInt(select.value);
+          const total = prixNum * quantite;
+          if (quantite === 0) {
+            alert("Veuillez sélectionner au moins 1 place.");
+            return;
+          }
+          localStorage.setItem("commande", JSON.stringify({
+            titre: film.titre,
+            quantite: quantite,
+            total: total.toFixed(2)
+          }));
+          window.location.href = "../pages/adherent.html";
+        });
       });
     }
 
-    window.onload = afficherFilms;
-
-
     function connexionAdmin() {
-    const nom = prompt("Entrez votre nom d'utilisateur :")?.trim();
-    const mdp = prompt("Entrez votre mot de passe :")?.trim();
+      const nom = prompt("Entrez votre nom d'utilisateur :")?.trim();
+      const mdp = prompt("Entrez votre mot de passe :")?.trim();
 
-    if (!nom || !mdp) {
-      alert("Champs obligatoires !");
-      return;
+      if (!nom || !mdp) {
+        alert("Champs obligatoires !");
+        return;
+      }
+
+      if (nom === "franck" && mdp === "1234") {
+        window.location.href = "../pages/admin.html";
+      } else {
+        alert("Accès refusé. Nom ou mot de passe incorrect.");
+      }
     }
 
-    if (nom === "franck" && mdp === "1234") {
-      window.location.href = "../pages/admin.html";
-    } else {
-      alert("Accès refusé. Nom ou mot de passe incorrect.");
-    }
-  }
+    window.onload = afficherFilms;
   </script>
 </body>
-
 </html>

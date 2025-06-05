@@ -185,26 +185,28 @@ main {
     </div>
   </footer>
 
-  <script>
-    // Récupération des infos utilisateur
-    document.getElementById("nom").textContent = localStorage.getItem("nom") || "Non défini";
-    document.getElementById("email").textContent = localStorage.getItem("email") || "Non défini";
-    document.getElementById("password").textContent = localStorage.getItem("password") || "Non défini";
+<script>
+  // --- Affichage des infos utilisateur ---
+  document.getElementById("nom").textContent = localStorage.getItem("nom") || "Non défini";
+  document.getElementById("email").textContent = localStorage.getItem("email") || "Non défini";
+  document.getElementById("password").textContent = localStorage.getItem("password") || "Non défini";
 
-    // Infos de la dernière commande
-    const film = localStorage.getItem("film") || "Inconnu";
-    const quantite = parseInt(localStorage.getItem("quantiteBillets")) || 0;
-    const prixUnitaire = parseFloat(localStorage.getItem("prixUnitaire")) || 0;
-    const total = quantite * prixUnitaire;
+  // --- Lecture de la dernière commande ---
+  const commande = JSON.parse(localStorage.getItem("commande"));
 
-    document.getElementById("film").textContent = film;
+  if (commande) {
+    const quantite = parseInt(commande.quantite);
+    const total = parseFloat(commande.total);
+    const prixUnitaire = total / quantite;
+
+    document.getElementById("film").textContent = commande.titre;
     document.getElementById("quantite").textContent = quantite;
     document.getElementById("prix").textContent = prixUnitaire.toFixed(2);
     document.getElementById("total").textContent = total.toFixed(2);
 
-    // Historique d'achats
+    // --- Mise à jour de l'historique ---
     const nouvelleCommande = {
-      film: film,
+      film: commande.titre,
       quantite: quantite,
       prixUnitaire: prixUnitaire,
       total: total
@@ -212,14 +214,23 @@ main {
 
     let historique = JSON.parse(localStorage.getItem("historiqueAchats")) || [];
 
-    // Ajouter la commande uniquement si elle est valide
-    if (film && quantite > 0 && prixUnitaire > 0) {
+    // Ajouter la commande si elle n'est pas déjà présente à la fin de l'historique
+    const dernierAchat = historique[historique.length - 1];
+    const commandeIdentique =
+      dernierAchat &&
+      dernierAchat.film === nouvelleCommande.film &&
+      dernierAchat.quantite === nouvelleCommande.quantite &&
+      dernierAchat.total === nouvelleCommande.total;
+
+    if (!commandeIdentique && quantite > 0) {
       historique.push(nouvelleCommande);
       localStorage.setItem("historiqueAchats", JSON.stringify(historique));
     }
 
-    // Affichage de l'historique
+    // --- Affichage de l'historique ---
     const tbody = document.getElementById("historiqueBody");
+    tbody.innerHTML = ""; // Réinitialisation
+
     historique.forEach((achat, index) => {
       const row = document.createElement("tr");
       row.innerHTML = `
@@ -231,6 +242,15 @@ main {
       `;
       tbody.appendChild(row);
     });
-  </script>
+
+  } else {
+    // Si aucune commande n'existe
+    document.getElementById("film").textContent = "Aucune commande";
+    document.getElementById("quantite").textContent = "-";
+    document.getElementById("prix").textContent = "-";
+    document.getElementById("total").textContent = "-";
+  }
+</script>
+
 </body>
 </html>
