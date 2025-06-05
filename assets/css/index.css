@@ -287,6 +287,7 @@ main {
 
 /* STYLISATION DE FIGCAPTION */
 .info-card figcaption {
+  width: ;
   background-color: #222;
   color: #fff;
   font-weight: bold;
