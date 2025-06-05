@@ -147,6 +147,8 @@ main {
   background-color: #0052a3;
 }
 
+
+
 /* Carousel */
 .carousel {
   overflow: hidden;
@@ -176,7 +178,7 @@ main {
 
 /* PROCHAINEMENT */
 
-.infos-cinema {
+/* .infos-cinema {
   padding: 30px 40px;
   background-color: #ffffff;
   text-align: center;
@@ -224,20 +226,102 @@ main {
   color: #555;
   line-height: 1.5em;
   text-align: justify;
-}
+} */
 
-.lienhtml {
+/* .lienhtml {
   font-size: 1.5em;
   font-weight: 800;
   font-family: "Inter", sans-serif;
   color:#a52a2a;
   text-decoration: none;
+} */
+
+/* CONTENEUR GLOBAL */
+.infos-cinema {
+  padding: 2rem;
+  background-color: #f5f5f5;
+  text-align: center;
 }
 
+.infos-cinema h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #333;
+}
 
+/* LIGNE DE CARTES */
+.card-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
 
+/* CARTE INDIVIDUELLE */
+.info-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 320px;
+  width: 100%;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
 
-/* Animation */
+.info-card:hover {
+  transform: translateY(-5px);
+}
+
+/* IMAGE + FIGCAPTION */
+.info-card figure {
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.info-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* STYLISATION DE FIGCAPTION */
+.info-card figcaption {
+  background-color: #222;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-align: center;
+  padding: 0.75rem 1rem;
+  letter-spacing: 0.5px;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+/* TEXTE DESCRIPTION */
+.info-card p {
+  padding: 1rem;
+  font-size: 0.95rem;
+  color: #444;
+  line-height: 1.5;
+  text-align: left;
+}
+
+/* LIEN FINAL */
+.lienhtml {
+  display: inline-block;
+  margin-top: 1.5rem;
+  font-weight: bold;
+  color: #0077cc;
+  text-decoration: none;
+}
+
+.lienhtml:hover {
+  text-decoration: underline;
+}
+
+/* RESPONSIVE */
+
 @keyframes scroll {
   0% {
     transform: translateX(0);
@@ -275,5 +359,18 @@ main {
 
   .card {
     width: 90%; /* Pour s'adapter à l'écran mobile */
+  }
+
+  .card-row {
+  flex-direction: column;
+  align-items: center;
+  }
+
+  .info-card {
+    max-width: 90%;
+  }
+
+  .infos-cinema h2 {
+    font-size: 1.5rem;
   }
 }
