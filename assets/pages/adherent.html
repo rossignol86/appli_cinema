@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="@ Cinéma : Films à l’affiche et réservations" />
+  <link rel="icon" href="../favicon.ico" />
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/headerfooter.css">
+  <link rel="stylesheet" href="../css/adherent.css">
+
+  <title>@ Cinéma - Espace Adhérent</title>
+  
+  <style>
+     body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.navbar a.active {
+    color: #007BFF; /* Bleu bootstrap */
+    font-weight: bold;
+    text-decoration: none;
+}
+
+main {
+    margin: 0 auto;
+    flex: 1;
+    padding: 40px;
+}
+
+.section-infos {
+    margin: 0 auto;
+    width: 360px;
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.section-commande {
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.section-historique {
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+    h1 {
+    text-align: center;
+    color: #000000;
+    font-weight: 600;
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    }
+
+    h2 {
+    color: #062557;
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    }
+
+    .info {
+      margin: 8px 0;
+      font-size: 16px;
+    }
+
+    .label {
+      font-weight: bold;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    th, td {
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+
+    th {
+      background-color: #eee;
+    }
+
+    footer.footer-content {
+      background-color: #222;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    footer a {
+      color: #ddd;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+  <header>
+    <nav class="navbar">
+      <a href="../../index.html">
+        <img src="../images/logo/logo.jpg" alt="Logo du cinéma - Accueil" class="logo">
+      </a>
+      <a href="../pages/films.html">Films</a>
+      <a class="active">Adhérent</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Bienvenue sur votre espace adhérent</h1>
+
+    <div class="section-infos">
+      <h2>Vos informations</h2>
+      <div class="info"><span class="label">Nom :</span> <span id="nom"></span></div>
+      <div class="info"><span class="label">Email :</span> <span id="email"></span></div>
+      <div class="info"><span class="label">Mot de passe :</span> <span id="password"></span></div>
+    </div>
+
+    <div class="section-commande">
+      <h2>Votre commande</h2>
+      <div class="info"><span class="label">Film :</span> <span id="film"></span></div>
+      <div class="info"><span class="label">Quantité de billets :</span> <span id="quantite"></span></div>
+      <div class="info"><span class="label">Prix unitaire :</span> <span id="prix"></span> €</div>
+      <div class="info"><span class="label">Total :</span> <span id="total"></span> €</div>
+      <div style="text-align: center; margin-top: 20px;">
+        <button id="btn-paiement" class="btn-paiement">Paiement</button>
+      </div>
+    </div>
+
+    <div class="section-historique">
+      <h2>Historique de vos achats</h2>
+      <table id="historiqueTable">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Film</th>
+            <th>Quantité</th>
+            <th>Prix unitaire (€)</th>
+            <th>Total (€)</th>
+          </tr>
+        </thead>
+        <tbody id="historiqueBody">
+          <!-- Rempli dynamiquement -->
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <footer class="footer-content">
+    <div>
+      <span>
+        <a href="https://rossignolfranck.alwaysdata.net/portfolio/" target="_blank">Franck Rossignol</a> – Maquette sur FIGMA – Code sur Visual Studio Code <br>
+        Afpa – Projet Application "Mini CGR" avec CI/CD <br>
+        &copy; 2025 @cinéma – Tous droits réservés –
+        <a href="../pages/apropos.html">À propos</a> –
+        <a href="../pages/mentionslegales.html">Mentions légales</a> –
+        <a>Conditions générales</a>
+      </span>
+    </div>
+  </footer>
+
+  <script>
+    // Récupération des infos utilisateur
+    document.getElementById("nom").textContent = localStorage.getItem("nom") || "Non défini";
+    document.getElementById("email").textContent = localStorage.getItem("email") || "Non défini";
+    document.getElementById("password").textContent = localStorage.getItem("password") || "Non défini";
+
+    // Infos de la dernière commande
+    const film = localStorage.getItem("film") || "Inconnu";
+    const quantite = parseInt(localStorage.getItem("quantiteBillets")) || 0;
+    const prixUnitaire = parseFloat(localStorage.getItem("prixUnitaire")) || 0;
+    const total = quantite * prixUnitaire;
+
+    document.getElementById("film").textContent = film;
+    document.getElementById("quantite").textContent = quantite;
+    document.getElementById("prix").textContent = prixUnitaire.toFixed(2);
+    document.getElementById("total").textContent = total.toFixed(2);
+
+    // Historique d'achats
+    const nouvelleCommande = {
+      film: film,
+      quantite: quantite,
+      prixUnitaire: prixUnitaire,
+      total: total
+    };
+
+    let historique = JSON.parse(localStorage.getItem("historiqueAchats")) || [];
+
+    // Ajouter la commande uniquement si elle est valide
+    if (film && quantite > 0 && prixUnitaire > 0) {
+      historique.push(nouvelleCommande);
+      localStorage.setItem("historiqueAchats", JSON.stringify(historique));
+    }
+
+    // Affichage de l'historique
+    const tbody = document.getElementById("historiqueBody");
+    historique.forEach((achat, index) => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${index + 1}</td>
+        <td>${achat.film}</td>
+        <td>${achat.quantite}</td>
+        <td>${achat.prixUnitaire.toFixed(2)}</td>
+        <td>${achat.total.toFixed(2)}</td>
+      `;
+      tbody.appendChild(row);
+    });
+  </script>
+</body>
+</html>
