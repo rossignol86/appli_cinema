@@ -37,6 +37,34 @@
     </nav>
   </header>
 
+  <!-- Fan club -->
+  <section>
+    <a class="fan-club" onclick="openPopup()"> - LE FAN CLUB -</a>
+      <div class="overlay" id="popupOverlay">
+        <div class="popup">
+          <div class="tabs">
+            <div class="tab active" onclick="switchTab(0)">Connexion</div>
+            <div class="tab" onclick="switchTab(1)">Devient membre ?</div>
+          </div>
+          <!-- <span class="close-btn" onclick="closePopup()">x</span> -->
+          <div class="popup-content" id="popupContent">
+            <!-- Contenu par défaut (Connexion) -->
+            <form>
+              <div class="form-group">
+                <label for="login-email">Email</label>
+                <input type="email" id="login-email" required>
+              </div>
+              <div class="form-group">
+                <label for="login-password">Mot de passe</label>
+                <input type="password" id="login-password" required>
+              </div>
+              <button class="btn">Connexion</button>
+            </form>
+          </div>
+        </div>
+      </div>
+  </section>
+
   <main>
 
     <!-- Groupe intro - actualités -->
@@ -45,46 +73,28 @@
 
       <div class="actualites">
         <h2>Actualités</h2>
-        <ul>
-          <li><strong>SAGA STAR WARS :</strong> MERCI à tous nos adhérents pour cette énorme succès !</li>
-          <li><strong>30 juin 2025 :</strong> Découvrez la légende <strong>" ROCKY "</strong>  sur grand écran, <br> avec <strong>sylvester Stallone !</strong> </li>
-          <li><strong>15 juillet 2025 :</strong> Pour les vacanciers en vacances au bord de la mer, <br> la saga en 5 films <strong>" LES DENTS DE LA MER "</strong>.</li>
-        </ul>
+          <ul>
+            <li>
+              <strong>Saga Star Wars :</strong> Un immense merci à tous nos adhérents pour le succès galactique de la rétrospective Star Wars !
+            </li>
+            <li>
+              <strong>30 juin 2025 :</strong> Vivez la légende du cinéma avec <strong>"Rocky"</strong> sur grand écran ! <br>
+              Un événement exceptionnel avec <strong>Sylvester Stallone</strong> au cœur de l'action.
+            </li>
+            <li>
+              <strong>15 juillet 2025 :</strong> Cet été, frissons garantis avec la saga culte <strong>"Les Dents de la Mer"</strong> : <br>
+              5 films à (re)découvrir en vacances, au bord de l’eau !
+            </li>
+          </ul>
       </div>
 
       <p>
         Explorez des aventures fantastiques et intemporelles avec des acteurs exceptionnels, <br> réservez vos places en un clic et vivez le cinéma autrement. <br>  
         Connectez-vous si vous êtes déjà membre, ou dépéchez-vous de créer votre compte <br> pour découvrir toutes l'univers de notre salle de cinéma atypique.
       </p>
-      <p>
-        <strong>Cette semaine démarre la saison des films de science-fiction avec la saga STAR WARS !</strong> 
-      </p>
-    </section>
-
-    <!-- Groupe des deux cards côte à côte -->
-    <section class="cards-container">
-      <!-- Connexion Adhérent -->
-      <div class="card">
-        <h2>Connexion Adhérent</h2>
-        <form id="form-connexion">
-          <input type="email" placeholder="Email" required>
-          <input type="password" placeholder="Mot de passe" required>
-          <button type="submit">Se connecter</button>
-        </form>
-      </div>
-
-
-      <!-- Inscription Non-Adhérent -->
-      <div class="card">
-        <h2>Inscription</h2>
-        <form id="form-inscription">
-          <input type="text" placeholder="Nom" required>
-          <input type="email" placeholder="Email" required>
-          <input type="password" placeholder="Mot de passe" required>
-          <button type="submit">S'inscrire</button>
-          <p id="message-inscription"></p>
-        </form>
-      </div>
+      <h2>
+        <strong>Vous faites partie du Fan Club ? <br> Connectez-vous pour réserver vos billets Star Wars !</strong> 
+      </h2>
     </section>
 
     <!-- Carrousel d'affiches de films -->
@@ -200,64 +210,103 @@
   </footer>
 
   <script>
-  // Connexion adhérent
-  document.getElementById('form-connexion').addEventListener('submit', function (e) {
-    e.preventDefault();
-    const email = this.querySelector('input[type="email"]').value;
-    const mdp = this.querySelector('input[type="password"]').value;
+function openPopup() {
+  document.getElementById("popupOverlay").style.display = "block";
+  switchTab(0); // Par défaut, affiche l’onglet Connexion
+}
 
-    if (email && mdp) {
-      // Simule la connexion (tu peux plus tard vérifier dans le localStorage)
-      window.location.href = "./assets/pages/films.html";
-    }
+function switchTab(tabIndex) {
+  const tabs = document.querySelectorAll('.tab');
+  tabs.forEach((t, i) => {
+    t.classList.toggle('active', i === tabIndex);
   });
 
-  // Inscription non-adhérent
-  document.getElementById('form-inscription').addEventListener('submit', function (e) {
-    e.preventDefault();
-    const nom = this.querySelector('input[type="text"]').value;
-    const email = this.querySelector('input[type="email"]').value;
-    const mdp = this.querySelector('input[type="password"]').value;
+  const content = document.getElementById('popupContent');
 
-    if (nom && email && mdp) {
-      const utilisateur = {
-        nom: nom,
-        email: email,
-        motdepasse: mdp
-      };
+  if (tabIndex === 0) {
+    // Connexion
+    content.innerHTML = `
+      <form id="popup-form-connexion">
+        <div class="form-group">
+          <label for="login-email">Email</label>
+          <input type="email" id="login-email" required>
+        </div>
+        <div class="form-group">
+          <label for="login-password">Mot de passe</label>
+          <input type="password" id="login-password" required>
+        </div>
+        <button class="btn" type="submit">Connexion</button>
+      </form>
+    `;
 
-      // Enregistre dans le localStorage
-      localStorage.setItem('utilisateur_' + email, JSON.stringify(utilisateur));
-      localStorage.setItem('nom', nom);
-      localStorage.setItem('email', email);
-      localStorage.setItem('password', mdp);
+    document.getElementById('popup-form-connexion').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('login-email').value;
+      const password = document.getElementById('login-password').value;
 
-      // Message de confirmation
-      document.getElementById('message-inscription').textContent = "Inscription réussie ! Redirection en cours...";
-      
-      setTimeout(() => {
-        window.location.href = "./assets/pages/films.html";
-      }, 2000);
-    }
-  });
+      const user = localStorage.getItem('utilisateur_' + email);
+      if (user) {
+        const utilisateur = JSON.parse(user);
+        if (utilisateur.motdepasse === password) {
+          window.location.href = "./assets/pages/films.html";
+        } else {
+          alert("Mot de passe incorrect");
+        }
+      } else {
+        alert("Utilisateur non trouvé");
+      }
+    });
 
-  // Fonction de connexion admin
-  function connexionAdmin() {
-    const nom = prompt("Entrez votre nom d'utilisateur :")?.trim();
-    const mdp = prompt("Entrez votre mot de passe :")?.trim();
+  } else {
+    // Inscription
+    content.innerHTML = `
+      <form id="popup-form-inscription">
+        <div class="form-group">
+          <label for="signup-name">Nom</label>
+          <input type="text" id="signup-name" required>
+        </div>
+        <div class="form-group">
+          <label for="signup-email">Email</label>
+          <input type="email" id="signup-email" required>
+        </div>
+        <div class="form-group">
+          <label for="signup-password">Mot de passe</label>
+          <input type="password" id="signup-password" required>
+        </div>
+        <button class="btn" type="submit">Inscription</button>
+        <p id="message-inscription" style="margin-top:10px;"></p>
+      </form>
+    `;
 
-    if (!nom || !mdp) {
-      alert("Champs obligatoires !");
-      return;
-    }
+    document.getElementById('popup-form-inscription').addEventListener('submit', function(e) {
+      e.preventDefault();
 
-    if (nom === "franck" && mdp === "1234") {
-      window.location.href = "./assets/pages/admin.html";
-    } else {
-      alert("Accès refusé. Nom ou mot de passe incorrect.");
-    }
+      const nom = document.getElementById('signup-name').value;
+      const email = document.getElementById('signup-email').value;
+      const password = document.getElementById('signup-password').value;
+
+      if (nom && email && password) {
+        const utilisateur = {
+          nom: nom,
+          email: email,
+          motdepasse: password
+        };
+
+        localStorage.setItem('utilisateur_' + email, JSON.stringify(utilisateur));
+        localStorage.setItem('nom', nom);
+        localStorage.setItem('email', email);
+        localStorage.setItem('password', password);
+
+        document.getElementById('message-inscription').textContent = "Inscription réussie ! Redirection...";
+        setTimeout(() => {
+          window.location.href = "./assets/pages/films.html";
+        }, 2000);
+      }
+    });
   }
-  </script>
+}
+
+ </script>
 
 
 </body>
