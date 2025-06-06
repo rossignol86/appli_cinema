@@ -160,6 +160,7 @@ main {
 .carousel-track {
   display: flex;
   animation: scroll 15s linear infinite;
+  margin-bottom: 2rem;
 }
 
 .carousel-track img {
@@ -287,11 +288,12 @@ main {
 
 /* STYLISATION DE FIGCAPTION */
 .info-card figcaption {
-  width: ;
-  background-color: #222;
-  color: #fff;
+  font-family: "WDXL Lubrifont TC", sans-serif;
+  
+  background-color: #ffc400;
+  color: #000000;
   font-weight: bold;
-  font-size: 1.1rem;
+  font-size: 1.8rem;
   text-align: center;
   padding: 0.75rem 1rem;
   letter-spacing: 0.5px;
