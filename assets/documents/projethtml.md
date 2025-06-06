@@ -63,4 +63,4 @@ note de rappel :
 - les affiches de film sont libres
 - le responsive mobile est obligatoire (pour le SEO)!
 - la sécurité est obligatoire !
-- une fois le développement de l'application accompli, il doit être déployé en ligne sur internet 'obligatoire)
+- une fois le développement de l'application accompli, il doit être déployé en ligne sur internet 'obligatoire
