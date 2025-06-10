@@ -7,7 +7,7 @@
   <!-- Meta SEO -->
   <meta name="description" content="le site cinéma de Franck Rossignol : découvrez des films, des actus cinéma, et une interface conviviale pour tous les passionnés du 7eme art.">
   <meta name="author" content="Franck Rossignol">
-  <meta name="keywords" content="Le Festival du Petit Oiseau, cinéma, films, Franck Rossignol, développeur web, Poitiers, cinéma indépendant, films à l'affiche, réservation de billets, fan club cinéma, actualités cinéma, saga Star Wars, saga Rocky, films cultes, cinéma françai, Drame, Comédie, Film noir, Science-fiction, Animation, Thriller, Western, Film d’auteur, Documentaire, Biopic, Road movie, Fantastique">
+  <meta name="keywords" content="Le Festival du Petit Oiseau, cinéma, films, Franck Rossignol, développeur web, Poitiers, cinéma indépendant, films à l'affiche, réservation de billets, fan club cinéma, actualités cinéma">
 
   <!-- Open Graph pour réseaux sociaux -->
   <meta property="og:title" content=" Le Festival du Petit Oiseau - Cinéma par Franck Rossignol">
@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="./css/reset.css">
   <link rel="stylesheet" href="./assets/css/index.css">
 
-  <title><title>Franck Rossignol – Créateur du Festival du Petit Oiseau, cinéma passion</title></title>
+  <title>Franck Rossignol – Créateur du Festival du Petit Oiseau, cinéma passion</title>
   <meta name="google-site-verification" content="NWwpDl4kAfLWsfru3wqTd-RS245gqBP-I4p1d3hUWqc" />
 </head>
 <body>
@@ -40,14 +40,17 @@
         </a>
       </div>
       <div>
-         <h1>Le Cinéma "Le Petit Oiseau" imaginé par Franck Rossignol</h1>
+         <h2>Cinéma " <strong>Le Petit Oiseau</strong> " </h2>
       </div>
     </nav>
-   
   </header>
 
 
   <main class="main-content">
+
+    <div>
+        <h1>Le Cinéma " <strong>Le Petit Oiseau</strong> " votre propose au mois de juin</h1>
+    </div>
 
     <!-- Fan club -->
     <section>
@@ -207,9 +210,9 @@
   <footer class="footer-content">
     <div>
       <span>
-        <a href="https://rossignolfranck.alwaysdata.net/portfolio/" target="_blank">Franck Rossignol</a> – Maquette sur FIGMA – Code sur Visual Studio Code <br>
-        Afpa – Projet Application "Mini CGR" avec CI/CD <br>
-        &copy; 2025 @cinéma – Tous droits réservés – 
+        <a href="https://rossignolfranck.alwaysdata.net/portfolio/" target="_blank">Franck Rossignol</a> – Maquette réalisé sur FIGMA – Développé sur Visual Studio Code <br>
+        Le cinéma "Le Petit Oiseau" – un site cinéma imaginé par Franck Rossignol avec CI/CD - Afpa <br>
+        &copy;Le Petit Oiseau - 2025 – Tous droits réservés – 
         <a href="#" onclick="connexionAdmin(); return false;">Gestion du site</a> –
         <a href="./assets/pages/apropos.html">À propos</a> –
         <a href="./assets/pages/mentionslegales.html">Mentions légales</a> –
@@ -219,103 +222,103 @@
   </footer>
 
   <script>
-function openPopup() {
-  document.getElementById("popupOverlay").style.display = "block";
-  switchTab(0); // Par défaut, affiche l’onglet Connexion
-}
+    function openPopup() {
+      document.getElementById("popupOverlay").style.display = "block";
+      switchTab(0); // Par défaut, affiche l’onglet Connexion
+    }
 
-function switchTab(tabIndex) {
-  const tabs = document.querySelectorAll('.tab');
-  tabs.forEach((t, i) => {
-    t.classList.toggle('active', i === tabIndex);
-  });
+    function switchTab(tabIndex) {
+      const tabs = document.querySelectorAll('.tab');
+      tabs.forEach((t, i) => {
+        t.classList.toggle('active', i === tabIndex);
+      });
 
-  const content = document.getElementById('popupContent');
+      const content = document.getElementById('popupContent');
 
-  if (tabIndex === 0) {
-    // Connexion
-    content.innerHTML = `
-      <form id="popup-form-connexion">
-        <div class="form-group">
-          <label for="login-email">Email</label>
-          <input type="email" id="login-email" required>
-        </div>
-        <div class="form-group">
-          <label for="login-password">Mot de passe</label>
-          <input type="password" id="login-password" required>
-        </div>
-        <button class="btn" type="submit">Connexion</button>
-      </form>
-    `;
+      if (tabIndex === 0) {
+        // Connexion
+        content.innerHTML = `
+          <form id="popup-form-connexion">
+            <div class="form-group">
+              <label for="login-email">Email</label>
+              <input type="email" id="login-email" required>
+            </div>
+            <div class="form-group">
+              <label for="login-password">Mot de passe</label>
+              <input type="password" id="login-password" required>
+            </div>
+            <button class="btn" type="submit">Connexion</button>
+          </form>
+        `;
 
-    document.getElementById('popup-form-connexion').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const email = document.getElementById('login-email').value;
-      const password = document.getElementById('login-password').value;
+        document.getElementById('popup-form-connexion').addEventListener('submit', function(e) {
+          e.preventDefault();
+          const email = document.getElementById('login-email').value;
+          const password = document.getElementById('login-password').value;
 
-      const user = localStorage.getItem('utilisateur_' + email);
-      if (user) {
-        const utilisateur = JSON.parse(user);
-        if (utilisateur.motdepasse === password) {
-          window.location.href = "./assets/pages/films.html";
-        } else {
-          alert("Mot de passe incorrect");
-        }
+          const user = localStorage.getItem('utilisateur_' + email);
+          if (user) {
+            const utilisateur = JSON.parse(user);
+            if (utilisateur.motdepasse === password) {
+              window.location.href = "./assets/pages/films.html";
+            } else {
+              alert("Mot de passe incorrect");
+            }
+          } else {
+            alert("Utilisateur non trouvé");
+          }
+        });
+
       } else {
-        alert("Utilisateur non trouvé");
+        // Inscription
+        content.innerHTML = `
+          <form id="popup-form-inscription">
+            <div class="form-group">
+              <label for="signup-name">Nom</label>
+              <input type="text" id="signup-name" required>
+            </div>
+            <div class="form-group">
+              <label for="signup-email">Email</label>
+              <input type="email" id="signup-email" required>
+            </div>
+            <div class="form-group">
+              <label for="signup-password">Mot de passe</label>
+              <input type="password" id="signup-password" required>
+            </div>
+            <button class="btn" type="submit">Inscription</button>
+            <p id="message-inscription" style="margin-top:10px;"></p>
+          </form>
+        `;
+
+        document.getElementById('popup-form-inscription').addEventListener('submit', function(e) {
+          e.preventDefault();
+
+          const nom = document.getElementById('signup-name').value;
+          const email = document.getElementById('signup-email').value;
+          const password = document.getElementById('signup-password').value;
+
+          if (nom && email && password) {
+            const utilisateur = {
+              nom: nom,
+              email: email,
+              motdepasse: password
+            };
+
+            localStorage.setItem('utilisateur_' + email, JSON.stringify(utilisateur));
+            localStorage.setItem('nom', nom);
+            localStorage.setItem('email', email);
+            localStorage.setItem('password', password);
+
+            document.getElementById('message-inscription').textContent = "Inscription réussie ! Redirection...";
+            setTimeout(() => {
+              window.location.href = "./assets/pages/films.html";
+            }, 2000);
+          }
+        });
       }
-    });
+    }
 
-  } else {
-    // Inscription
-    content.innerHTML = `
-      <form id="popup-form-inscription">
-        <div class="form-group">
-          <label for="signup-name">Nom</label>
-          <input type="text" id="signup-name" required>
-        </div>
-        <div class="form-group">
-          <label for="signup-email">Email</label>
-          <input type="email" id="signup-email" required>
-        </div>
-        <div class="form-group">
-          <label for="signup-password">Mot de passe</label>
-          <input type="password" id="signup-password" required>
-        </div>
-        <button class="btn" type="submit">Inscription</button>
-        <p id="message-inscription" style="margin-top:10px;"></p>
-      </form>
-    `;
-
-    document.getElementById('popup-form-inscription').addEventListener('submit', function(e) {
-      e.preventDefault();
-
-      const nom = document.getElementById('signup-name').value;
-      const email = document.getElementById('signup-email').value;
-      const password = document.getElementById('signup-password').value;
-
-      if (nom && email && password) {
-        const utilisateur = {
-          nom: nom,
-          email: email,
-          motdepasse: password
-        };
-
-        localStorage.setItem('utilisateur_' + email, JSON.stringify(utilisateur));
-        localStorage.setItem('nom', nom);
-        localStorage.setItem('email', email);
-        localStorage.setItem('password', password);
-
-        document.getElementById('message-inscription').textContent = "Inscription réussie ! Redirection...";
-        setTimeout(() => {
-          window.location.href = "./assets/pages/films.html";
-        }, 2000);
-      }
-    });
-  }
-}
-
- </script>
+  </script>
 
 
 </body>
