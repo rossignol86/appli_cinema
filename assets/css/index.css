@@ -9,22 +9,53 @@ body {
     height: 100%;
 }
 
-.navbar {
+.navbar{
+    position: fixed; /* ou position: sticky; */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 300px;
+    z-index: 1000; /* pour qu'elle reste au-dessus du reste */  
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     align-items: center;
-    padding: 30px 0px;
     justify-content: center;
-    margin: 0 auto;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
+
+
+/* .navbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 30px;
+    justify-content: center;
+    margin: 20px auto;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+} */
 
 .navbar img.logo {
-    height: 70px;
+    height: 200px;
+    margin-top: 30px;
 }
 
+ h1 {
+  font-family: "Cinzel", serif;
+  font-size: 2rem;
+  font-weight: 400;
+  margin: 20px 0px 30px 0px;
+}
+
+.main-content {
+    margin-top: 330px; /* ajuster selon la hauteur réelle de la navbar */
+}
 
 /* overlay le club */
     .overlay {
+      margin: 0 auto;
+      top: 300; left: 0;
       display: none;
       position: fixed;
       width: 100%; height: 100%;
@@ -161,13 +192,7 @@ main {
   margin: 0 auto;
 }
 
-.intro h1 {
-  font-size: 3rem;
-  color:#a52a2a;
-  font-weight: 700;
-  text-shadow: 1px 1px 2px #000;
-  margin-bottom: 1rem;
-}
+
 
 .intro p {
   font-size: 1.2rem;
@@ -179,7 +204,7 @@ main {
 /* Actualités */
 .actualites {
   width: 80%;
-  margin: 30px auto;
+  margin: 10px auto;
   padding: 20px;
   background-color: #f9f9f9;
   border-bottom: 4px solid #ff4400;
@@ -277,66 +302,6 @@ main {
 }
 
 
-/* PROCHAINEMENT */
-
-/* .infos-cinema {
-  padding: 30px 40px;
-  background-color: #ffffff;
-  text-align: center;
-  border-radius: 20px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-
-.infos-cinema h2 {
-  font-size: 2.5em;
-  margin-bottom: 30px;
-  color: #333;
-}
-
-.card-row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-}
-
-.info-card {
-  background-color: #fff;
-  border-radius: 8px;
-  width: 300px;
-  padding: 20px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  text-align: left;
-}
-
-.info-card img {
-  width: 100%;
-  height: auto;
-  border-radius: 4px;
-  margin-bottom: 15px;
-}
-
-.info-card h3 {
-  margin: 10px 0;
-  font-size: 1.5em;
-  color: #000;
-}
-
-.info-card p {
-  font-size: 1.1em;
-  color: #555;
-  line-height: 1.5em;
-  text-align: justify;
-} */
-
-/* .lienhtml {
-  font-size: 1.5em;
-  font-weight: 800;
-  font-family: "Inter", sans-serif;
-  color:#a52a2a;
-  text-decoration: none;
-} */
-
 /* CONTENEUR GLOBAL */
 .infos-cinema {
   padding: 2rem;
@@ -421,6 +386,10 @@ main {
 .lienhtml:hover {
   text-decoration: underline;
 }
+
+
+
+
 
 /* RESPONSIVE */
 

@@ -4,73 +4,82 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <!-- SEO -->
-  <meta name="description" content="@ Cinéma : Tous les films à l’affiche, découvrez les nouveautés et réservez vos places en ligne." />
-  <meta name="robots" content="index, follow" />
-  <meta property="og:title" content="Admin Cinéma - Réservation de films" />
-  <meta property="og:description" content="Interface d'administration pour ajouter et consulter les films en salle." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://monsite" />
-  <meta property="og:image" content="https://monsite.fr/assets/images/logo/logo.jpg" />
+  <!-- Meta SEO -->
+  <meta name="description" content="le site cinéma de Franck Rossignol : découvrez des films, des actus cinéma, et une interface conviviale pour tous les passionnés du 7eme art.">
+  <meta name="author" content="Franck Rossignol">
+  <meta name="keywords" content="Le Festival du Petit Oiseau, cinéma, films, Franck Rossignol, développeur web, Poitiers, cinéma indépendant, films à l'affiche, réservation de billets, fan club cinéma, actualités cinéma, saga Star Wars, saga Rocky, films cultes, cinéma françai, Drame, Comédie, Film noir, Science-fiction, Animation, Thriller, Western, Film d’auteur, Documentaire, Biopic, Road movie, Fantastique">
+
+  <!-- Open Graph pour réseaux sociaux -->
+  <meta property="og:title" content=" Le Festival du Petit Oiseau - Cinéma par Franck Rossignol">
+  <meta property="og:description" content="Site de cinéma conçu par Franck Rossignol, pour les amateurs de films et d’émotions fortes.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rossignol-franck-mini-cgr-fictif.sidathsoeun.fr/">
+  <meta property="og:image" content="https://rossignol-franck-mini-cgr-fictif.sidathsoeun.fr/assets/logo.jpg">
 
   <!-- Favicon -->
   <link rel="icon" href="favicon.ico" />
 
   <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=WDXL+Lubrifont+TC&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=WDXL+Lubrifont+TC&display=swap" rel="stylesheet">
 
   <!-- Styles -->
   <link rel="stylesheet" href="./css/reset.css">
   <link rel="stylesheet" href="./assets/css/index.css">
 
-  <title>@ Cinéma - Films à l’affiche et réservations</title>
+  <title><title>Franck Rossignol – Créateur du Festival du Petit Oiseau, cinéma passion</title></title>
   <meta name="google-site-verification" content="NWwpDl4kAfLWsfru3wqTd-RS245gqBP-I4p1d3hUWqc" />
 </head>
 <body>
 
   <header>
     <nav class="navbar" role="navigation" aria-label="Menu principal">
-      <a><img src="./assets/images/logo/logo.jpg" alt="Logo du @ cinéma - Vous êtes sur la page d'Accueil" class="logo">
-      </a>
+      <div>
+        <a><img src="./assets/images/logo/lepetitoiseau2.png" alt="Logo du cinema Le Petit Oiseau - Vous êtes sur la page d'Accueil" class="logo">
+        </a>
+      </div>
+      <div>
+         <h1>Le Cinéma "Le Petit Oiseau" imaginé par Franck Rossignol</h1>
+      </div>
     </nav>
+   
   </header>
 
-  <!-- Fan club -->
-  <section>
-    <a class="fan-club" onclick="openPopup()"> - LE FAN CLUB -</a>
-      <div class="overlay" id="popupOverlay">
-        <div class="popup">
-          <div class="tabs">
-            <div class="tab active" onclick="switchTab(0)">Connexion</div>
-            <div class="tab" onclick="switchTab(1)">Devient membre ?</div>
-          </div>
-          <!-- <span class="close-btn" onclick="closePopup()">x</span> -->
-          <div class="popup-content" id="popupContent">
-            <!-- Contenu par défaut (Connexion) -->
-            <form>
-              <div class="form-group">
-                <label for="login-email">Email</label>
-                <input type="email" id="login-email" required>
-              </div>
-              <div class="form-group">
-                <label for="login-password">Mot de passe</label>
-                <input type="password" id="login-password" required>
-              </div>
-              <button class="btn">Connexion</button>
-            </form>
+
+  <main class="main-content">
+
+    <!-- Fan club -->
+    <section>
+      <a class="fan-club" onclick="openPopup()"> - LE FAN CLUB DES ADHERENTS -</a>
+        <div class="overlay" id="popupOverlay">
+          <div class="popup">
+            <div class="tabs">
+              <div class="tab active" onclick="switchTab(0)">Connexion</div>
+              <div class="tab" onclick="switchTab(1)">Devient membre ?</div>
+            </div>
+            <!-- <span class="close-btn" onclick="closePopup()">x</span> -->
+            <div class="popup-content" id="popupContent">
+              <!-- Contenu par défaut (Connexion) -->
+              <form>
+                <div class="form-group">
+                  <label for="login-email">Email</label>
+                  <input type="email" id="login-email" required>
+                </div>
+                <div class="form-group">
+                  <label for="login-password">Mot de passe</label>
+                  <input type="password" id="login-password" required>
+                </div>
+                <button class="btn">Connexion</button>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
-  </section>
-
-  <main>
+    </section>
 
     <!-- Groupe intro - actualités -->
     <section class="intro">
-      <h1>🎬 Bienvenue dans l’univers @cinéma 🎬</h1>
-
+     
       <div class="actualites">
         <h2>Actualités</h2>
           <ul>
@@ -89,7 +98,7 @@
       </div>
 
       <p>
-        Explorez des aventures fantastiques et intemporelles avec des acteurs exceptionnels, <br> réservez vos places en un clic et vivez le cinéma autrement. <br>  
+        Explorez des aventures fantastiques et intemporelles avec des acteurs exceptionnels, <br> réservez vos places en un clic dans "LE FAN CLUB" et vivez le cinéma autrement. <br>  
         Connectez-vous si vous êtes déjà membre, ou dépéchez-vous de créer votre compte <br> pour découvrir toutes l'univers de notre salle de cinéma atypique.
       </p>
       <h2>
@@ -199,8 +208,8 @@
     <div>
       <span>
         <a href="https://rossignolfranck.alwaysdata.net/portfolio/" target="_blank">Franck Rossignol</a> – Maquette sur FIGMA – Code sur Visual Studio Code <br>
-        Afpa – Projet Application "Mini CGR" avec CI/CD <br>
-        &copy; 2025 @cinéma – Tous droits réservés – 
+        Afpa – &copy; Le Cinéma "Le Petit Oiseau" imaginé et développé par Franck Rossignol avec CI/CD <br>
+        &copy; 2025 Le Petit Oiseau – Tous droits réservés – 
         <a href="#" onclick="connexionAdmin(); return false;">Gestion du site</a> –
         <a href="./assets/pages/apropos.html">À propos</a> –
         <a href="./assets/pages/mentionslegales.html">Mentions légales</a> –
