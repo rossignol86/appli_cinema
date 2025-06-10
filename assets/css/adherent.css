@@ -6,6 +6,7 @@
     min-height: 100vh;
 }
 
+
 .navbar a.active {
     color: #007BFF; /* Bleu bootstrap */
     font-weight: bold;
