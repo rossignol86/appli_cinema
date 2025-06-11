@@ -100,7 +100,7 @@
       // Affichage des détails de la commande
       document.getElementById("film").textContent = commande.titre;
       document.getElementById("quantite").textContent = commande.quantite;
-      document.getElementById("prix").textContent = (commande.total / commande.quantite).toFixed(1); // Prix unitaire
+      document.getElementById("prix").textContent = (commande.total / commande.quantite).toFixed(2); // Prix unitaire
       document.getElementById("total").textContent = commande.total;
 
       // Création ou mise à jour de l'historique d'achat de l'utilisateur
@@ -111,7 +111,7 @@
       historique.push({
         titre: commande.titre,
         quantite: commande.quantite,
-        prix: (commande.total / commande.quantite).toFixed(1),
+        prix: (commande.total / commande.quantite).toFixed(2),
         total: commande.total
       });
 
