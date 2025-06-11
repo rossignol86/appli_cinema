@@ -3,64 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-  <!-- Meta SEO -->
-  <meta name="description" content="le site cinéma de Franck Rossignol Le Petit Oiseau : découvrez des films, des actus cinéma, et une interface conviviale pour tous les passionnés du 7eme art.">
-  <meta name="author" content="Franck Rossignol">
-  <meta name="keywords" content="Le Cinéma Le Petit Oiseau, cinéma, films, Franck Rossignol, développeur web, Poitiers, cinéma indépendant, films à l'affiche, réservation de billets, fan club cinéma, actualités cinéma">
-
-  <!-- Open Graph pour réseaux sociaux -->
-  <meta property="og:title" content=" Le Cinéma Le Petit Oiseau - Cinéma par Franck Rossignol">
-  <meta property="og:description" content="Site de cinéma conçu par Franck Rossignol, pour les amateurs de films et d’émotions fortes.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://rossignol-franck-mini-cgr-fictif.sidathsoeun.fr/">
-  <meta property="og:image" content="https://rossignol-franck-mini-cgr-fictif.sidathsoeun.fr/assets/logo.jpg">
-
-  <!-- Favicon -->
-  <link rel="icon" href="favicon.ico" />
-
-  <!-- Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=WDXL+Lubrifont+TC&display=swap" rel="stylesheet">
-
-
-
-  <link rel="stylesheet" href="../css/reset.css">
-  <link rel="stylesheet" href="../css/headerfooter.css">
-  <link rel="stylesheet" href="../css/adherent.css">
-
-  <title>Franck Rossignol – Page Adhérent - Créateur du Cinéma "CINÉSTAR", cinéma passion</title>>
-  
-
+  <title>Adhérent - Cinéma CinéStar</title>
+  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="stylesheet" href="../css/headerfooter.css" />
+  <link rel="stylesheet" href="../css/adherent.css" />
 </head>
-
-
 <body>
-   <header>
-    <nav class="navbar" role="navigation" aria-label="Menu principal">
+
+  <header>
+    <nav class="navbar">
       <div>
-        <a><img src="../images/logo/logocinestar.jpg" alt="Logo du cinema CINESTAR - Vous êtes sur la page d'Accueil" class="logo">
-        </a>
-      </div>
+        <img src="../images/logo/logocinestar.jpg" alt="Logo CinéStar" class="logo">
+      </div class="navbarmenu">
+        <a href="../pages/films.html">Gallerie de Films</a>
       <div>
-         <h2>Le cinéma en grand, le spectacle en boucle !</h2>
+        <h2>Bienvenue sur votre espace adhérent</h2>
       </div>
     </nav>
   </header>
 
   <main>
-    <h1>Bienvenue sur votre espace adhérent</h1>
-
-    <div class="section-infos">
+    <section class="section-infos">
       <h2>Vos informations</h2>
       <div class="info"><span class="label">Nom :</span> <span id="nom"></span></div>
       <div class="info"><span class="label">Email :</span> <span id="email"></span></div>
       <div class="info"><span class="label">Mot de passe :</span> <span id="password"></span></div>
-    </div>
+    </section>
 
-    <div class="section-commande">
-      <h2>Votre commande</h2>
+    <section class="section-commande">
+      <h2>Votre commande en cours</h2>
       <div class="info"><span class="label">Film :</span> <span id="film"></span></div>
       <div class="info"><span class="label">Quantité de billets :</span> <span id="quantite"></span></div>
       <div class="info"><span class="label">Prix unitaire :</span> <span id="prix"></span> €</div>
@@ -68,11 +39,11 @@
       <div style="text-align: center; margin-top: 20px;">
         <button id="btn-paiement" class="btn-paiement">Paiement</button>
       </div>
-    </div>
+    </section>
 
-    <div class="section-historique">
+    <section class="section-historique">
       <h2>Historique de vos achats</h2>
-      <table id="historiqueTable">
+      <table>
         <thead>
           <tr>
             <th>#</th>
@@ -83,10 +54,10 @@
           </tr>
         </thead>
         <tbody id="historiqueBody">
-          <!-- Rempli dynamiquement -->
+          <!-- Dynamique -->
         </tbody>
       </table>
-    </div>
+    </section>
   </main>
 
   <footer class="footer-content">
@@ -95,79 +66,87 @@
         <a href="https://rossignolfranck.alwaysdata.net/portfolio/" target="_blank">Franck Rossignol</a> – Maquette réalisé sur FIGMA – Développé sur Visual Studio Code <br>
         Le cinéma "Le Petit Oiseau" – un site cinéma imaginé par Franck Rossignol avec CI/CD - Afpa <br>
         &copy;Le Petit Oiseau - 2025 – Tous droits réservés – 
+        <a href="#" onclick="connexionAdmin(); return false;">Gestion du site</a> –
         <a href="../pages/apropos.html">À propos</a> –
         <a href="../pages/mentionslegales.html">Mentions légales</a> –
-        <a>Conditions générales</a>
+        <a href="../pages/cgv.html">Conditions générales</a>
       </span>
     </div>
   </footer>
 
 <script>
-  // --- Affichage des infos utilisateur ---
-  document.getElementById("nom").textContent = localStorage.getItem("nom") || "Non défini";
-  document.getElementById("email").textContent = localStorage.getItem("email") || "Non défini";
-  document.getElementById("password").textContent = localStorage.getItem("password") || "Non défini";
+  // Le code s'exécute une fois que toute la page est chargée
+  window.onload = () => {
+    // Récupération des données de l'utilisateur depuis le localStorage
+    const nom = localStorage.getItem("nom");
+    const email = localStorage.getItem("email_connecté");
+    const password = localStorage.getItem("password");
 
-  // --- Lecture de la dernière commande ---
-  const commande = JSON.parse(localStorage.getItem("commande"));
-
-  if (commande) {
-    const quantite = parseInt(commande.quantite);
-    const total = parseFloat(commande.total);
-    const prixUnitaire = total / quantite;
-
-    document.getElementById("film").textContent = commande.titre;
-    document.getElementById("quantite").textContent = quantite;
-    document.getElementById("prix").textContent = prixUnitaire.toFixed(2);
-    document.getElementById("total").textContent = total.toFixed(2);
-
-    // --- Mise à jour de l'historique ---
-    const nouvelleCommande = {
-      film: commande.titre,
-      quantite: quantite,
-      prixUnitaire: prixUnitaire,
-      total: total
-    };
-
-    let historique = JSON.parse(localStorage.getItem("historiqueAchats")) || [];
-
-    // Ajouter la commande si elle n'est pas déjà présente à la fin de l'historique
-    const dernierAchat = historique[historique.length - 1];
-    const commandeIdentique =
-      dernierAchat &&
-      dernierAchat.film === nouvelleCommande.film &&
-      dernierAchat.quantite === nouvelleCommande.quantite &&
-      dernierAchat.total === nouvelleCommande.total;
-
-    if (!commandeIdentique && quantite > 0) {
-      historique.push(nouvelleCommande);
-      localStorage.setItem("historiqueAchats", JSON.stringify(historique));
+    // Si l'utilisateur n'est pas identifié (nom ou email manquant), redirection vers la page d'accueil
+    if (!email || !nom) {
+      window.location.href = "../../index.html";
+      return; // Arrêt du script
     }
 
-    // --- Affichage de l'historique ---
+    // Affichage des informations de l'utilisateur dans les éléments HTML prévus
+    document.getElementById("nom").textContent = nom;
+    document.getElementById("email").textContent = email;
+    document.getElementById("password").textContent = password;
+
+    // Tentative de récupération d'une commande en cours (sous forme d'objet JSON)
+    const commande = JSON.parse(localStorage.getItem("commande")) || null;
+
+    if (commande) {
+      // Affichage des détails de la commande
+      document.getElementById("film").textContent = commande.titre;
+      document.getElementById("quantite").textContent = commande.quantite;
+      document.getElementById("prix").textContent = (commande.total / commande.quantite).toFixed(1); // Prix unitaire
+      document.getElementById("total").textContent = commande.total;
+
+      // Création ou mise à jour de l'historique d'achat de l'utilisateur
+      const historiqueKey = "historique_" + email;
+      const historique = JSON.parse(localStorage.getItem(historiqueKey)) || [];
+
+      // Ajout de la commande actuelle à l'historique
+      historique.push({
+        titre: commande.titre,
+        quantite: commande.quantite,
+        prix: (commande.total / commande.quantite).toFixed(1),
+        total: commande.total
+      });
+
+      // Sauvegarde de l'historique mis à jour dans le localStorage
+      localStorage.setItem(historiqueKey, JSON.stringify(historique));
+
+      // Suppression de la commande en cours (elle a été ajoutée à l'historique)
+      localStorage.removeItem("commande");
+    }
+
+    // Récupération de l'historique pour affichage
+    const historique = JSON.parse(localStorage.getItem("historique_" + email)) || [];
     const tbody = document.getElementById("historiqueBody");
-    tbody.innerHTML = ""; // Réinitialisation
 
-    historique.forEach((achat, index) => {
-      const row = document.createElement("tr");
-      row.innerHTML = `
-        <td>${index + 1}</td>
-        <td>${achat.film}</td>
-        <td>${achat.quantite}</td>
-        <td>${achat.prixUnitaire.toFixed(2)}</td>
-        <td>${achat.total.toFixed(2)}</td>
-      `;
-      tbody.appendChild(row);
-    });
-
-  } else {
-    // Si aucune commande n'existe
-    document.getElementById("film").textContent = "Aucune commande";
-    document.getElementById("quantite").textContent = "-";
-    document.getElementById("prix").textContent = "-";
-    document.getElementById("total").textContent = "-";
-  }
+    // Si l'historique est vide, on affiche un message
+    if (historique.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="5">Aucun achat enregistré.</td></tr>`;
+    } else {
+      // Sinon, on remplit dynamiquement le tableau avec les données de l'historique
+      historique.forEach((entry, index) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${index}</td>
+          <td>${entry.titre}</td>
+          <td>${entry.quantite}</td>
+          <td>${entry.prix}</td>
+          <td>${entry.total}</td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+  };
 </script>
+
 
 </body>
 </html>
+ 

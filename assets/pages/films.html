@@ -64,85 +64,97 @@
     </div>
   </footer>
 
-  <script>
-    function afficherFilms() {
-      const films = JSON.parse(localStorage.getItem("films")) || [];
-      const container = document.getElementById("filmsContainer");
-      container.innerHTML = "";
+<script>
+function afficherFilms() {
+  const films = JSON.parse(localStorage.getItem("films")) || [];
+  const email = localStorage.getItem("email_connecté");
+  const nom = localStorage.getItem("nom");
+  const password = localStorage.getItem("password");
 
-      if (films.length === 0) {
-        container.innerHTML = "<p>Aucun film enregistré pour le moment.</p>";
+  if (!email || !nom || !password) {
+    alert("Vous devez être connecté pour accéder à cette page.");
+    window.location.href = "../../index.html";
+    return;
+  }
+
+  const container = document.getElementById("filmsContainer");
+  container.innerHTML = "";
+
+  if (films.length === 0) {
+    container.innerHTML = "<p>Aucun film enregistré pour le moment.</p>";
+    return;
+  }
+
+  films.forEach((film, index) => {
+    const prixNum = parseFloat(film.prix);
+    const div = document.createElement("article");
+    div.className = "film";
+    div.innerHTML = `
+      <img src="${film.affiche}" alt="Affiche du film ${film.titre}" />
+      <h4>${film.titre}</h4>
+      <p><strong>Prix :</strong> ${prixNum.toFixed(2)} €</p>
+      <p><strong>Synopsis :</strong> ${film.synopsis}</p>
+
+      <div class="quantite-container">
+        <label for="quantite-${index}">Nombre de place(s)</label>
+        <select id="quantite-${index}">
+          ${Array.from({length: 51}, (_, i) => `<option value="${i}">${i}</option>`).join("")}
+        </select>
+      </div>
+
+      <div class="total-et-btn">
+        <span class="total" id="total-${index}">Total : 0.00 €</span>
+        <button class="btn-commander" id="commander-${index}">COMMANDER</button>
+      </div>
+    `;
+    container.appendChild(div);
+
+    const select = div.querySelector(`#quantite-${index}`);
+    const totalEl = div.querySelector(`#total-${index}`);
+    const btnCommander = div.querySelector(`#commander-${index}`);
+
+    select.addEventListener("change", () => {
+      const quantite = parseInt(select.value);
+      const total = prixNum * quantite;
+      totalEl.textContent = `Total : ${total.toFixed(2)} €`;
+    });
+
+    btnCommander.addEventListener("click", () => {
+      const quantite = parseInt(select.value);
+      if (quantite === 0) {
+        alert("Veuillez sélectionner au moins 1 place.");
         return;
       }
 
-      films.forEach((film, index) => {
-        const prixNum = parseFloat(film.prix);
-        const div = document.createElement("article");
-        div.className = "film";
-        div.innerHTML = `
-          <img src="${film.affiche}" alt="Affiche du film ${film.titre}" />
-          <h4>${film.titre}</h4>
-          <p><strong>Prix :</strong> ${prixNum.toFixed(2)} €</p>
-          <p><strong>Synopsis :</strong> ${film.synopsis}</p>
+      const total = prixNum * quantite;
 
-          <div class="quantite-container">
-            <label for="quantite-${index}">Nombre de place(s)</label>
-            <select id="quantite-${index}">
-              ${Array.from({length: 51}, (_, i) => `<option value="${i}">${i}</option>`).join("")}
-            </select>
-          </div>
+      const commande = {
+        titre: film.titre,
+        quantite: quantite,
+        prix: prixNum.toFixed(2),
+        total: total.toFixed(2)
+      };
 
-          <div class="total-et-btn">
-            <span class="total" id="total-${index}">Total : 0.00 €</span>
-            <button class="btn-commander" id="commander-${index}">COMMANDER</button>
-          </div>
-        `;
-        container.appendChild(div);
+      // Enregistrement de la commande en cours
+      localStorage.setItem("commande", JSON.stringify(commande));
 
-        const select = div.querySelector(`#quantite-${index}`);
-        const totalEl = div.querySelector(`#total-${index}`);
-        const btnCommander = div.querySelector(`#commander-${index}`);
+      // Enregistrement dans l'historique de l'utilisateur
+      const historiqueKey = "historique_" + email;
+      const historique = JSON.parse(localStorage.getItem(historiqueKey)) || [];
+      historique.push(commande);
+      localStorage.setItem(historiqueKey, JSON.stringify(historique));
 
-        select.addEventListener("change", () => {
-          const quantite = parseInt(select.value);
-          const total = prixNum * quantite;
-          totalEl.textContent = `Total : ${total.toFixed(2)} €`;
-        });
+      // Redirection
+      window.location.href = "../pages/adherent.html";
+    });
+  });
+}
 
-        btnCommander.addEventListener("click", () => {
-          const quantite = parseInt(select.value);
-          const total = prixNum * quantite;
-          if (quantite === 0) {
-            alert("Veuillez sélectionner au moins 1 place.");
-            return;
-          }
-          localStorage.setItem("commande", JSON.stringify({
-            titre: film.titre,
-            quantite: quantite,
-            total: total.toFixed(2)
-          }));
-          window.location.href = "../pages/adherent.html";
-        });
-      });
-    }
+window.onload = afficherFilms;
+</script>
 
-    function connexionAdmin() {
-      const nom = prompt("Entrez votre nom d'utilisateur :")?.trim();
-      const mdp = prompt("Entrez votre mot de passe :")?.trim();
 
-      if (!nom || !mdp) {
-        alert("Champs obligatoires !");
-        return;
-      }
 
-      if (nom === "franck" && mdp === "1234") {
-        window.location.href = "../pages/admin.html";
-      } else {
-        alert("Accès refusé. Nom ou mot de passe incorrect.");
-      }
-    }
 
-    window.onload = afficherFilms;
-  </script>
 </body>
 </html>

@@ -251,10 +251,10 @@
 
 
 
-  <script>
+<script>
   function openPopup() {
     document.getElementById("popupOverlay").style.display = "block";
-    switchTab(0); // Par défaut, affiche l’onglet Connexion
+    switchTab(0); // Onglet Connexion par défaut
   }
 
   function switchTab(tabIndex) {
@@ -263,103 +263,107 @@
       t.classList.toggle('active', i === tabIndex);
     });
 
-  const content = document.getElementById('popupContent');
+    const content = document.getElementById('popupContent');
 
-  if (tabIndex === 0) {
-    // Connexion
-    content.innerHTML = `
-      <form id="popup-form-connexion">
-        <div class="form-group">
-          <label for="login-email">Email</label>
-          <input type="email" id="login-email" required>
-        </div>
-        <div class="form-group">
-          <label for="login-password">Mot de passe</label>
-          <input type="password" id="login-password" required>
-        </div>
-        <button class="btn" type="submit">Connexion</button>
-      </form>
-    `;
+    if (tabIndex === 0) {
+      // === FORMULAIRE DE CONNEXION ===
+      content.innerHTML = `
+        <form id="popup-form-connexion">
+          <div class="form-group">
+            <label for="login-email">Email</label>
+            <input type="email" id="login-email" required>
+          </div>
+          <div class="form-group">
+            <label for="login-password">Mot de passe</label>
+            <input type="password" id="login-password" required>
+          </div>
+          <button class="btn" type="submit">Connexion</button>
+        </form>
+      `;
 
-    document.getElementById('popup-form-connexion').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const email = document.getElementById('login-email').value;
-      const password = document.getElementById('login-password').value;
+      document.getElementById('popup-form-connexion').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = document.getElementById('login-email').value;
+        const password = document.getElementById('login-password').value;
 
-      const user = localStorage.getItem('utilisateur_' + email);
-      if (user) {
-        const utilisateur = JSON.parse(user);
-        if (utilisateur.motdepasse === password) {
-          window.location.href = "./assets/pages/films.html";
+        const user = localStorage.getItem('utilisateur_' + email);
+        if (user) {
+          const utilisateur = JSON.parse(user);
+          if (utilisateur.motdepasse === password) {
+            // 🔐 Enregistrer l'utilisateur connecté
+            localStorage.setItem("email_connecté", email);
+            localStorage.setItem("nom", utilisateur.nom);
+
+            window.location.href = "./assets/pages/films.html";
+          } else {
+            alert("Mot de passe incorrect");
+          }
         } else {
-          alert("Mot de passe incorrect");
+          alert("Utilisateur non trouvé");
         }
-      } else {
-        alert("Utilisateur non trouvé");
-      }
-    });
+      });
 
-  } else {
-    // Inscription
-    content.innerHTML = `
-      <form id="popup-form-inscription">
-        <div class="form-group">
-          <label for="signup-name">Nom</label>
-          <input type="text" id="signup-name" required>
-        </div>
-        <div class="form-group">
-          <label for="signup-email">Email</label>
-          <input type="email" id="signup-email" required>
-        </div>
-        <div class="form-group">
-          <label for="signup-password">Mot de passe</label>
-          <input type="password" id="signup-password" required>
-        </div>
-        <button class="btn" type="submit">Inscription</button>
-        <p id="message-inscription" style="margin-top:10px;"></p>
-      </form>
-    `;
+    } else {
+      // === FORMULAIRE D'INSCRIPTION ===
+      content.innerHTML = `
+        <form id="popup-form-inscription">
+          <div class="form-group">
+            <label for="signup-name">Nom</label>
+            <input type="text" id="signup-name" required>
+          </div>
+          <div class="form-group">
+            <label for="signup-email">Email</label>
+            <input type="email" id="signup-email" required>
+          </div>
+          <div class="form-group">
+            <label for="signup-password">Mot de passe</label>
+            <input type="password" id="signup-password" required>
+          </div>
+          <button class="btn" type="submit">Inscription</button>
+          <p id="message-inscription" style="margin-top:10px;"></p>
+        </form>
+      `;
 
-    document.getElementById('popup-form-inscription').addEventListener('submit', function(e) {
-      e.preventDefault();
+      document.getElementById('popup-form-inscription').addEventListener('submit', function(e) {
+        e.preventDefault();
 
-      const nom = document.getElementById('signup-name').value;
-      const email = document.getElementById('signup-email').value;
-      const password = document.getElementById('signup-password').value;
+        const nom = document.getElementById('signup-name').value;
+        const email = document.getElementById('signup-email').value;
+        const password = document.getElementById('signup-password').value;
 
-      if (nom && email && password) {
-        const utilisateur = {
-          nom: nom,
-          email: email,
-          motdepasse: password
-        };
+        if (nom && email && password) {
+          const utilisateur = {
+            nom: nom,
+            email: email,
+            motdepasse: password
+          };
 
-        localStorage.setItem('utilisateur_' + email, JSON.stringify(utilisateur));
-        localStorage.setItem('nom', nom);
-        localStorage.setItem('email', email);
-        localStorage.setItem('password', password);
+          localStorage.setItem('utilisateur_' + email, JSON.stringify(utilisateur));
+          // Enregistrement utilisateur connecté
+          localStorage.setItem("email_connecté", email);
+          localStorage.setItem("nom", nom);
 
-        document.getElementById('message-inscription').textContent = "Inscription réussie ! Redirection...";
-        setTimeout(() => {
-          window.location.href = "./assets/pages/films.html";
-        }, 2000);
-      }
-    });
+          document.getElementById('message-inscription').textContent = "Inscription réussie ! Redirection...";
+          setTimeout(() => {
+            window.location.href = "./assets/pages/films.html";
+          }, 2000);
+        }
+      });
+    }
   }
-}
 
-function closePopup() {
-  document.getElementById("popupOverlay").style.display = "none";
-}
-
-// Ajoutez un écouteur d'événement pour fermer la popup en cliquant en dehors
-document.getElementById("popupOverlay").addEventListener("click", function(event) {
-  if (event.target === document.getElementById("popupOverlay")) {
-    closePopup();
+  function closePopup() {
+    document.getElementById("popupOverlay").style.display = "none";
   }
-});
 
-  </script>
+  // Fermeture de la popup en cliquant en dehors
+  document.getElementById("popupOverlay").addEventListener("click", function(event) {
+    if (event.target === document.getElementById("popupOverlay")) {
+      closePopup();
+    }
+  });
+</script>
+
 
 
 </body>
