@@ -93,7 +93,81 @@ function afficherFilms() {
 
   // Boucle sur chaque film pour créer dynamiquement un bloc HTML
   films.forEach((film, index) => {
-    const prixNum = parseFloat(film.prix)
+    const prixNum = parseFloat(film.prix); // Convertit le prix en nombre
+    const div = document.createElement("article");
+    div.className = "film"; // Classe CSS pour le style
+
+    // Remplissage du contenu HTML du bloc film
+    div.innerHTML = `
+      <img src="${film.affiche}" alt="Affiche du film ${film.titre}" />
+      <h4>${film.titre}</h4>
+      <p><strong>Prix :</strong> ${prixNum.toFixed(2)} €</p>
+      <p><strong>Synopsis :</strong> ${film.synopsis}</p>
+
+      <div class="quantite-container">
+        <label for="quantite-${index}">Nombre de place(s)</label>
+        <select id="quantite-${index}">
+          ${Array.from({length: 51}, (_, i) => `<option value="${i}">${i}</option>`).join("")}
+        </select>
+      </div>
+
+      <div class="total-et-btn">
+        <span class="total" id="total-${index}">Total : 0.00 €</span>
+        <button class="btn-commander" id="commander-${index}">COMMANDER</button>
+      </div>
+    `;
+
+    // Ajout de l'article dans le conteneur principal
+    container.appendChild(div);
+
+    // Sélection des éléments interactifs du bloc
+    const select = div.querySelector(`#quantite-${index}`);
+    const totalEl = div.querySelector(`#total-${index}`);
+    const btnCommander = div.querySelector(`#commander-${index}`);
+
+    // Mise à jour du total à chaque changement de quantité
+    select.addEventListener("change", () => {
+      const quantite = parseInt(select.value);
+      const total = prixNum * quantite;
+      totalEl.textContent = `Total : ${total.toFixed(2)} €`;
+    });
+
+    // Gestion du clic sur le bouton "COMMANDER"
+    btnCommander.addEventListener("click", () => {
+      const quantite = parseInt(select.value);
+      if (quantite === 0) {
+        alert("Veuillez sélectionner au moins 1 place.");
+        return;
+      }
+
+      const total = prixNum * quantite;
+
+      const commande = {
+        titre: film.titre,
+        quantite: quantite,
+        prix: prixNum.toFixed(2),
+        total: total.toFixed(2)
+      };
+
+      // Enregistrement de la commande en cours dans le localStorage
+      localStorage.setItem("commande", JSON.stringify(commande));
+
+      // Ajout de la commande à l'historique de l'utilisateur
+      const historiqueKey = "historique_" + email;
+      const historique = JSON.parse(localStorage.getItem(historiqueKey)) || [];
+      historique.push(commande);
+      localStorage.setItem(historiqueKey, JSON.stringify(historique));
+
+      // Redirection vers la page adhérent pour affichage du récapitulatif
+      window.location.href = "../pages/adherent.html";
+    });
+  });
+}
+
+// Exécute la fonction afficherFilms() au chargement de la page
+window.onload = afficherFilms;
+</script>
+
 
 
 
