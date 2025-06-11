@@ -1,11 +1,10 @@
 body {
+  font-family: "Inter", sans-serif;
   height: 100%;
   display: flex;
   flex-direction: column;
-  font-family: Arial, sans-serif;
   line-height: 1.6;
-  background-color: #f4f4f4;
-  color: #333;
+  color: #000000;
   margin: 0;
   padding: 0;
 }
@@ -19,26 +18,24 @@ main.apropos-container {
   max-width: 900px;
   margin: 2rem auto;
   padding: 2rem;
-  background-color: #fff;
+  background-color: #ffffff;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
 h1 {
-  font-size: 2.2rem;
+  font-size: 2rem;
   color: #c9184a;
   margin-bottom: 1.5rem;
   text-align: center;
 }
 
-h2 {
-  font-size: 1.4rem;
-  color: #222;
-  margin-top: 1.5rem;
+section h2 {
+  font-size: 1.5rem;
+  color: #000000;
   margin-bottom: 0.5rem;
 }
 
 ul {
-  font-family: "Inter", sans-serif;
   padding-left: 1.5rem;
   list-style-type: disc;
 }
@@ -54,7 +51,6 @@ a:hover {
 }
 
 p {
-  font-family: "Inter", sans-serif;
   font-size: 1.2rem;
   color: #555;
   margin-bottom: 1rem;
