@@ -348,6 +348,16 @@
   }
 }
 
+function closePopup() {
+  document.getElementById("popupOverlay").style.display = "none";
+}
+
+// Ajoutez un écouteur d'événement pour fermer la popup en cliquant en dehors
+document.getElementById("popupOverlay").addEventListener("click", function(event) {
+  if (event.target === document.getElementById("popupOverlay")) {
+    closePopup();
+  }
+});
 
   </script>
 
