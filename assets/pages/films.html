@@ -66,92 +66,35 @@
 
 <script>
 function afficherFilms() {
+  // Récupération de la liste des films enregistrés dans le localStorage
   const films = JSON.parse(localStorage.getItem("films")) || [];
+
+  // Récupération des informations de l'utilisateur connecté
   const email = localStorage.getItem("email_connecté");
   const nom = localStorage.getItem("nom");
   const password = localStorage.getItem("password");
 
+  // Vérifie si l'utilisateur est bien connecté, sinon redirige vers la page d'accueil
   if (!email || !nom || !password) {
     alert("Vous devez être connecté pour accéder à cette page.");
     window.location.href = "../../index.html";
     return;
   }
 
+  // Ciblage du conteneur HTML qui affichera les films
   const container = document.getElementById("filmsContainer");
-  container.innerHTML = "";
+  container.innerHTML = ""; // Réinitialisation du contenu
 
+  // Si aucun film n'est enregistré, message d'information
   if (films.length === 0) {
     container.innerHTML = "<p>Aucun film enregistré pour le moment.</p>";
     return;
   }
 
+  // Boucle sur chaque film pour créer dynamiquement un bloc HTML
   films.forEach((film, index) => {
-    const prixNum = parseFloat(film.prix);
-    const div = document.createElement("article");
-    div.className = "film";
-    div.innerHTML = `
-      <img src="${film.affiche}" alt="Affiche du film ${film.titre}" />
-      <h4>${film.titre}</h4>
-      <p><strong>Prix :</strong> ${prixNum.toFixed(2)} €</p>
-      <p><strong>Synopsis :</strong> ${film.synopsis}</p>
+    const prixNum = parseFloat(film.prix)
 
-      <div class="quantite-container">
-        <label for="quantite-${index}">Nombre de place(s)</label>
-        <select id="quantite-${index}">
-          ${Array.from({length: 51}, (_, i) => `<option value="${i}">${i}</option>`).join("")}
-        </select>
-      </div>
-
-      <div class="total-et-btn">
-        <span class="total" id="total-${index}">Total : 0.00 €</span>
-        <button class="btn-commander" id="commander-${index}">COMMANDER</button>
-      </div>
-    `;
-    container.appendChild(div);
-
-    const select = div.querySelector(`#quantite-${index}`);
-    const totalEl = div.querySelector(`#total-${index}`);
-    const btnCommander = div.querySelector(`#commander-${index}`);
-
-    select.addEventListener("change", () => {
-      const quantite = parseInt(select.value);
-      const total = prixNum * quantite;
-      totalEl.textContent = `Total : ${total.toFixed(2)} €`;
-    });
-
-    btnCommander.addEventListener("click", () => {
-      const quantite = parseInt(select.value);
-      if (quantite === 0) {
-        alert("Veuillez sélectionner au moins 1 place.");
-        return;
-      }
-
-      const total = prixNum * quantite;
-
-      const commande = {
-        titre: film.titre,
-        quantite: quantite,
-        prix: prixNum.toFixed(2),
-        total: total.toFixed(2)
-      };
-
-      // Enregistrement de la commande en cours
-      localStorage.setItem("commande", JSON.stringify(commande));
-
-      // Enregistrement dans l'historique de l'utilisateur
-      const historiqueKey = "historique_" + email;
-      const historique = JSON.parse(localStorage.getItem(historiqueKey)) || [];
-      historique.push(commande);
-      localStorage.setItem(historiqueKey, JSON.stringify(historique));
-
-      // Redirection
-      window.location.href = "../pages/adherent.html";
-    });
-  });
-}
-
-window.onload = afficherFilms;
-</script>
 
 
 
