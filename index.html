@@ -25,7 +25,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=WDXL+Lubrifont+TC&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Monoton&family=WDXL+Lubrifont+TC&display=swap" rel="stylesheet">
 
   <!-- Styles -->
   <link rel="stylesheet" href="./css/reset.css">
@@ -43,7 +43,7 @@
         </a>
       </div>
       <div>
-         <h2>Le cinéma en grand, le spectacle en boucle !</h2>
+         <h2>Le cinéma en grand, le&nbsp;spectacle&nbsp;en boucle !</h2>
       </div>
     </nav>
   </header>
@@ -52,12 +52,13 @@
   <main class="main-content">
 
     <div>
-        <h1>Le " <strong>CINÉSTAR</strong> " votre propose au mois de juin</h1>
+      <h1>Des films cultes & des sensations fortes, bienvenue chez <span style="font-family: 'Monoton', sans-serif; font-size: 50px; color:#0d2d7c ;">CinéStar</span></h1>
     </div>
 
     <!-- ESPACE ADHERENT -->
-    <section>
-      <a class="fan-club" onclick="openPopup()"> JE RESERVE MES PLACES !<br>CONNEXION ou INSCRIPTION</a>
+    <section class="espace-adherent">
+      <div>
+        <a class="fan-club" onclick="openPopup()"> JE RESERVE MES PLACES !<br>CONNEXION ou INSCRIPTION</a>
         <div class="overlay" id="popupOverlay">
           <div class="popup">
             <div class="tabs">
@@ -81,37 +82,53 @@
             </div>
           </div>
         </div>
+      </div>
     </section>
 
-    <!-- Groupe intro - actualités -->
     <section class="intro">
-     
-      <div class="actualites">
-        <h2>Actualités</h2>
+      <div class="intro-container">
+        <!-- Bloc actualités -->
+        <article class="bloc actualites">
+          <span class="logo-text">Actualités</span>
           <ul>
-            <li>
-              <strong>Saga Star Wars :</strong> Un immense merci à tous nos adhérents pour le succès galactique de la rétrospective Star Wars !
+            <li class="actus">
+              <strong>Saga Star Wars :</strong> Un immense merci à tous nos adhérents pour le succès galactique <br> de la rétrospective Star Wars ! 
             </li>
-            <li>
+            <li class="actus">
               <strong>30 juin 2025 :</strong> Vivez la légende du cinéma avec <strong>"Rocky"</strong> sur grand écran ! <br>
               Un événement exceptionnel avec <strong>Sylvester Stallone</strong> au cœur de l'action.
             </li>
-            <li>
-              <strong>15 juillet 2025 :</strong> Cet été, frissons garantis avec la saga culte <strong>"Les Dents de la Mer"</strong> : <br>
+            <li class="actus">
+              <strong>15 juillet 2025 :</strong> Sur la plage frissons garantis avec la saga culte <strong>"Les Dents de la Mer"</strong> : <br>
               5 films à (re)découvrir en vacances, au bord de l’eau !
             </li>
-          </ul>
-      </div>
+            <li class="actus">
+              <strong>30 juillet 2025 :</strong> Partez en mission avec la saga culte <strong>"Mission: Impossible"</strong> : <br>
+              7 films haletants à redécouvrir avec <strong>Tom Cruise</strong>, entre action, suspense et cascades légendaires !
 
-      <p>
-        
-        Grâce au Cinéma " <strong>CINÉSTAR</strong> ", <br> vous allez explorer des aventures fantastiques et intemporelles avec des acteurs exceptionnels, <br> réservez vos places en un clic dans <strong>"JE RESERVE MES PLACES"</strong> et vivez le cinéma autrement. <br>  
-        Connectez-vous si vous êtes déjà membre, ou dépéchez-vous de créer votre compte <br> pour découvrir toutes l'univers de notre salle de cinéma atypique.
-      </p>
-      <h2>
-        <strong>Vous faites partie du Fan Club ? <br> Connectez-vous pour réserver vos billets dans votre espace dédié !</strong> 
-      </h2>
+            </li>
+          </ul>
+        </article>
+
+    <!-- Bloc contact -->
+        <article class="bloc contact">
+          <span class="logo-text">CinéStar</span>
+          <p>
+            Vous allez explorer des aventures fantastiques et intemporelles avec des acteurs exceptionnels.
+          </p>
+          <p>
+            Réservez vos places en un clic dans <strong>"JE RÉSERVE MES PLACES"</strong> et vivez le cinéma autrement.
+          </p>
+          <p>
+            Connectez-vous si vous êtes déjà membre, ou dépêchez-vous de créer votre compte pour découvrir tout l’univers de notre salle de cinéma atypique.
+          </p>
+          <h2>
+            <strong>Vous faites partie du Fan Club ?<br>Connectez-vous pour réserver vos billets dans votre espace dédié !</strong>
+          </h2>
+        </article>
+      </div>
     </section>
+
 
     <!-- Carrousel d'affiches des films starwars -->
     <section class="carousel">
@@ -130,9 +147,8 @@
         <img src="./assets/images/films/lamenacefantome.webp" alt="Affiche du film La menace Fantôme STAR WARS">
         <img src="./assets/images/films/larevanchedessith.webp" alt="Affiche du film La revanche des siths de STAR WARS">
         <img src="./assets/images/films/lattaquedesclones.webp" alt="Affiche du film L'attauqye des clones'de STAR WARS">
-        <!-- Répétition pour effet de boucle fluide -->
         <img src="./assets/images/films/ldernierjedi.webp" alt="Affiche du film Le dernier JEDI de STAR WARS">
-        <img src="./assets/images/films/lenouvelespoir_.jpg" alt="Affiche du film Le nouvel espoir de STAR WARS">
+        <img src="./assets/images/films/lenouvelespoir_.webp" alt="Affiche du film Le nouvel espoir de STAR WARS">
         <img src="./assets/images/films/rogueone.webp" alt="Affiche du film Rogue One de STAR WARS">
         <img src="./assets/images/films/retourduJedi.webp" alt="Affiche du film Le retour du JEDI de STAR WARS">
         <img src="./assets/images/films/mandalorian.webp" alt="Affiche du film Le Mandalorian de STAR WARS">
@@ -155,11 +171,14 @@
         <img src="./assets/images/films/missionimpossible2.webp" alt="Affiche du film Mission Impossible 2 - 2000">
         <img src="./assets/images/films/missionimpossible3.webp" alt="Affiche du film Mission Impossible 3 - 2006">
         <img src="./assets/images/films/missionimpossible4.webp" alt="Affiche du film Mission Impossible 4 - Protocol Fantôme - 2011">
-        <!-- Répétition pour effet de boucle fluide -->
         <img src="./assets/images/films/missionimpossible5.webp" alt="Affiche du film Mission Impossible 5 - Rogue Nation - 2015">
         <img src="./assets/images/films/missionimpossible6.webp" alt="Affiche du film Mission Impossible 6 - Fallout - 2018">
         <img src="./assets/images/films/missionimpossible7.webp" alt="Affiche du film Mission Impossible 7 - Dead Reckoning - 2023">
         <img src="./assets/images/films/missionimpossible8.webp" alt="Affiche du film Mission Impossible 8 - The Final Reckoning - 2025">
+        <img src="./assets/images/films/missionimpossible1.webp" alt="Affiche du film Mission Impossible 1 - 1996">
+        <img src="./assets/images/films/missionimpossible2.webp" alt="Affiche du film Mission Impossible 2 - 2000">
+        <img src="./assets/images/films/missionimpossible3.webp" alt="Affiche du film Mission Impossible 3 - 2006">
+        <img src="./assets/images/films/missionimpossible4.webp" alt="Affiche du film Mission Impossible 4 - Protocol Fantôme - 2011">
        
       </div>
     </section>
@@ -247,12 +266,6 @@
       </span>
     </div>
   </footer>
-
-
-
-
-
-
 
 <script>
   function openPopup() {
@@ -365,6 +378,26 @@
       closePopup();
     }
   });
+
+
+  const track = document.querySelector('.carousel-track');
+    const container = document.querySelector('.carousel');
+    let direction = -1; // -1 = vers la gauche, 1 = vers la droite
+    let position = 0;
+
+    const maxScroll = track.scrollWidth - container.offsetWidth;
+
+    function animate() {
+      position += direction * 1; // vitesse 1px par frame
+
+      if (position <= -maxScroll) direction = 1;
+      else if (position >= 0) direction = -1;
+
+      track.style.transform = `translateX(${position}px)`;
+      requestAnimationFrame(animate);
+    }
+
+    animate();
 </script>
 
 

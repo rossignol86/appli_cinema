@@ -38,8 +38,8 @@ body {
 }
 
 h1 {
-  font-family: "Cinzel", serif;
-  font-size: 2rem;
+  font-size: 3rem;
+  line-height: 3.0rem;
   font-weight: 400;
   margin: 20px 0px 0px 0px;
 }
@@ -48,17 +48,31 @@ h1 {
     margin-top: 350px; /* ajuster selon la hauteur réelle de la navbar */
 }
 
+
+.espace-adherent {
+  margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+
 /* overlay le club */
     .overlay {
       margin: 0 auto;
-      top: 300;
+      top: 250px;
       left: 0;
       display: none;
       position: fixed;
       width: 100%;
       height: 100%;
-      background: url('../images/photos/cinema.jpg') no-repeat center center fixed;
-      background-size: cover;
+      /* background: url('../images/photos/cinema.webp') no-repeat center center fixed; */
+      /* background-size: cover; */
       z-index: 999;
     }
 
@@ -68,8 +82,10 @@ h1 {
       flex-direction: column;
       justify-content: center;
       height: 100%;
-      font-size: 1.5rem;
-      padding: 8px 15px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      line-height: 2rem;
+      padding: 5px 10px;
       cursor: pointer;
     }
 
@@ -199,31 +215,42 @@ main {
 }
 
 
-/* Actualités */
-.actualites {
-  width: 80%;
-  margin: 10px auto;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-bottom: 4px solid #ff4400;
+/* Style de base */
+.intro-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
-.actualites h2 {
-  margin-top: 0;
-  color: #a52a2a;
-  font-size: 2rem;
-  font-weight: bold;
+.actus{
+  margin-bottom: 20px;
+  width: 100%;
 }
 
 .actualites ul {
   list-style: none;
-  padding: 0;
+  font-size: 1.2rem;
+  line-height: 1.5rem;
 }
 
-.actualites li {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
+.bloc {
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
+
+.actualites h2,
+.contact h2 {
+  margin-bottom: 1rem;
+}
+
+.logo-text {
+  font-family: 'Monoton', sans-serif;
+  font-size: 40px;
+  color: #cc0000;
+}
+
 
 
 
@@ -275,14 +302,15 @@ main {
 /* Carousel */
 .carousel {
   overflow: hidden;
-  width: 90%;
-  max-width: 800px;
+  width: 100%;
+  max-width: 1100px;
   margin-bottom: 2rem;
 }
 
 .carousel-track {
   display: flex;
-  animation: scroll 15s linear infinite;
+  width: max-content;
+  animation: scrollAlternate 15s linear infinite alternate;
   margin-bottom: 2rem;
 }
 
@@ -292,13 +320,22 @@ main {
   margin-right: 1rem;
   border-radius: 0.5rem;
 }
-
 #message-inscription {
   color: green;
   margin-top: 1rem;
   font-weight: bold;
 }
 
+
+/* Animation continue */
+@keyframes scrollAlternate {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-100% + 100vw)); /* Va jusqu’à la dernière image visible */
+  }
+}
 
 /* CONTENEUR GLOBAL */
 .infos-cinema {
@@ -439,8 +476,9 @@ main {
     flex-direction: column;
     align-items: center;
     margin: 0 auto;
+    height: 200px;
+    box-shadow: none;
   }
-
   .navbar a {
     color: rgb(0, 0, 0);
     text-decoration: none;
@@ -450,9 +488,9 @@ main {
   }
 
   .navbar img.logo {
-    height: 70px;
+    height: 100px;
     justify-content: center;
-    margin: 0 auto;}
+    margin: 20 auto;}
 
   .cards-container {
     flex-direction: column;
@@ -462,6 +500,11 @@ main {
   .card {
     width: 90%; /* Pour s'adapter à l'écran mobile */
   }
+
+  .main-content {
+      margin-top: 200px; /* ajuster selon la hauteur réelle de la navbar */
+  }
+
 
   .card-row {
   flex-direction: column;
@@ -474,5 +517,21 @@ main {
 
   .infos-cinema h2 {
     font-size: 1.5rem;
+  }
+  
+}
+
+
+/* Responsive desktop */
+@media (min-width: 768px) {
+  .intro-container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .actualites,
+  .contact {
+    width: 60%;
+    margin: 20px;
   }
 }

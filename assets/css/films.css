@@ -2,20 +2,9 @@
 body {
     margin: 0;
     padding: 0;
-    background: url('../images/photos/battlefront_2_01_1920x1080.jpg') no-repeat center center fixed;
+    background: url('../images/photos/battlefront_2_01_1920x1080.webp') no-repeat center center fixed;
     background-size: cover;
     color: #fff;
-}
-
-h3 {
-    font-family: 'WDXL Lubrifont TC', sans-serif;
-    font-size: 4rem;
-    line-height: 6rem;
-    font-weight: 900;
-    color:rgb(255, 255, 255);
-    text-align: center;
-    margin: 20px 20px;
-    text-shadow: 5px 5px 15px #ffe81f;
 }
 
 h2 {
@@ -25,6 +14,27 @@ h2 {
     font-weight: 900;
     color:brown;
     text-align: left;
+}
+
+h3 {
+    font-family: 'WDXL Lubrifont TC', sans-serif;
+    font-size: 4rem;
+    line-height: 4rem;
+    font-weight: 900;
+    color:rgb(255, 255, 255);
+    text-align: center;
+    margin: 20px 0px 40px 0px;
+    text-shadow: 5px 5px 15px #ffe81f;
+}
+
+h4 {
+    font-family: 'WDXL Lubrifont TC', sans-serif;
+    font-size: 3.5rem;
+    line-height: 3rem;
+    font-weight: 900;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    margin: 20px 20px;
 }
 
 p {
@@ -54,6 +64,7 @@ p {
 /* Titre principal */
 .cinema-banner h1 {
     font-size: 2.5rem;
+    line-height: 3.5rem;
     margin-bottom: 1rem;
     text-shadow: 2px 2px 5px #000;
     margin-bottom: 2rem;
