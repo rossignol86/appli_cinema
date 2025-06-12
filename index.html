@@ -52,7 +52,7 @@
   <main class="main-content">
 
     <div>
-      <h1>Des films cultes & des sensations fortes, bienvenue chez <span style="font-family: 'Monoton', sans-serif; font-size: 50px; color:#0d2d7c ;">CinéStar</span></h1>
+      <h1>Bienvenue chez <span style="font-family: 'Monoton', sans-serif; font-size: 50px; color:#0d2d7c ;">CinéStar</span>,<br> prêts à découvrir des films cultes & des sensations fortes ! </h1>
     </div>
 
     <!-- ESPACE ADHERENT -->
@@ -358,6 +358,7 @@
           // Enregistrement utilisateur connecté
           localStorage.setItem("email_connecté", email);
           localStorage.setItem("nom", nom);
+          localStorage.setItem("motdepasse", motdepasse);
 
           document.getElementById('message-inscription').textContent = "Inscription réussie ! Redirection...";
           setTimeout(() => {

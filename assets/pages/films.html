@@ -57,7 +57,7 @@
         <a href="https://rossignolfranck.alwaysdata.net/portfolio/" target="_blank">Franck Rossignol</a> – Maquette réalisé sur FIGMA – Développé sur Visual Studio Code <br>
         Le cinéma "Le Petit Oiseau" – un site cinéma imaginé par Franck Rossignol avec CI/CD - Afpa <br>
         &copy;Le Petit Oiseau - 2025 – Tous droits réservés – 
-        <a href="../pages/admin.html">Gestion du site</a> –
+        <a href="../pages/admin.html" id="admin-link">Gestion du site</a> –
         <a href="../pages/apropos.html">À propos</a> –
         <a href="../pages/mentionslegales.html">Mentions légales</a> –
         <a href="../pages/cgv.html">Conditions générales</a>
@@ -102,7 +102,7 @@ function afficherFilms() {
 
       <div class="total-et-btn">
         <span class="total" id="total-${index}">Total : 0.00 €</span>
-        <button class="btn-commander" id="commander-${index}">COMMANDER</button>
+        <a href="#" class="btn-commander" id="commander-${index}">COMMANDER</a>
       </div>
     `;
 
@@ -122,8 +122,9 @@ function afficherFilms() {
     });
 
     // Gestion du clic sur le bouton "COMMANDER"
-    btnCommander.addEventListener("click", () => {
-      const quantite = parseInt(select.value);
+    btnCommander.addEventListener("click", (event) => {
+      event.preventDefault();
+      console.log("clique commande ok");            const quantite = parseInt(select.value);
       if (quantite === 0) {
         alert("Veuillez sélectionner au moins 1 place.");
         return;
@@ -142,19 +143,42 @@ function afficherFilms() {
       localStorage.setItem("commande", JSON.stringify(commande));
 
       // Ajout de la commande à l'historique de l'utilisateur
-      const historiqueKey = "historique_" + email;
-      const historique = JSON.parse(localStorage.getItem(historiqueKey)) || [];
-      historique.push(commande);
-      localStorage.setItem(historiqueKey, JSON.stringify(historique));
-
+      // const historiqueKey = "historique_" + email;
+      // const historique = JSON.parse(localStorage.getItem(historiqueKey)) || [];
+      // historique.push(commande);
+      // localStorage.setItem(historiqueKey, JSON.stringify(historique));
+ 
       // Redirection vers la page adhérent pour affichage du récapitulatif
-      window.location.href = "../pages/adherent.html";
+      console.log("avant redirection");   
+      window.location.href = "adherent.html";
     });
   });
 }
 
 // Exécute la fonction afficherFilms() au chargement de la page
 window.onload = afficherFilms;
+
+
+
+
+// Gestion de l'accès à la page admin, avec 2 prompts pour la gestion des films
+  document.getElementById('admin-link').addEventListener('click', function(event) {
+    event.preventDefault(); // bloque la navigation par défaut
+
+    const username = prompt("Entrez votre nom d'utilisateur :");
+    const motdepasse = prompt("Entrez votre mot de passe :");
+
+    // Remplace par tes identifiants désirés
+    const validUser = "franck";
+    const validPass = "1234";
+
+    if (username === validUser && motdepasse === validPass) {
+      // accès autorisé : redirection vers la page admin
+      window.location.href = this.href;
+    } else {
+      alert("Nom d'utilisateur ou mot de passe incorrect.");
+    }
+  });
 
 </script>
 

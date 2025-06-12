@@ -27,7 +27,7 @@
       <h2>Vos informations</h2>
       <div class="info"><span class="label">Nom :</span> <span id="nom"></span></div>
       <div class="info"><span class="label">Email :</span> <span id="email"></span></div>
-      <div class="info"><span class="label">Mot de passe :</span> <span id="password"></span></div>
+      <div class="info"><span class="label">Mot de passe :</span> <span id="motdepasse"></span></div>
     </section>
 
     <section class="section-commande">
@@ -79,7 +79,7 @@
     // Récupération des données de l'utilisateur depuis le localStorage
     const nom = localStorage.getItem("nom");
     const email = localStorage.getItem("email_connecté");
-    const password = localStorage.getItem("password");
+    const motdepasse = localStorage.getItem("motdepasse");
 
     // Si l'utilisateur n'est pas identifié (nom ou email manquant), redirection vers la page d'accueil
     if (!email || !nom) {
@@ -90,7 +90,7 @@
     // Affichage des informations de l'utilisateur dans les éléments HTML prévus
     document.getElementById("nom").textContent = nom;
     document.getElementById("email").textContent = email;
-    document.getElementById("password").textContent = password;
+    document.getElementById("motdepasse").textContent = motdepasse;
 
     // Tentative de récupération d'une commande en cours (sous forme d'objet JSON)
     const commande = JSON.parse(localStorage.getItem("commande")) || null;

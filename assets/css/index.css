@@ -39,7 +39,7 @@ body {
 
 h1 {
   font-size: 3rem;
-  line-height: 3.0rem;
+  line-height: 3.5rem;
   font-weight: 400;
   margin: 20px 0px 0px 0px;
 }
@@ -82,6 +82,7 @@ h1 {
       flex-direction: column;
       justify-content: center;
       height: 100%;
+      color: #808080;
       font-size: 1.2rem;
       font-weight: 700;
       line-height: 2rem;
