@@ -4,143 +4,136 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
+  <!-- Importation des polices Google -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=WDXL+Lubrifont+TC&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
 
+  <!-- Métadonnées -->
   <title>Admin Cinéma</title>
+
+  <!-- Feuilles de styles externes -->
   <link rel="stylesheet" href="../css/reset.css">
   <link rel="stylesheet" href="../css/admin.css">
   <link rel="stylesheet" href="../css/headerfooter.css">
   <link rel="icon" href="../favicon.ico">
-
-  <style>
-    
-  </style>
 </head>
 <body>
 
-  <!-- NAVBAR -->
+  <!-- Barre de navigation -->
   <nav class="navbar">
-    <img src="../images/logo/logo.jpg" alt="Logo Cinéma" class="logo">
+    <img src="../images/logo/logocinestar.jpg" alt="Logo Cinéma" class="logo">
     <a href="../pages/films.html">Films</a>
-    <!-- <a href="../pages/adhérent.html">Adhérent</a> -->
-    <!-- <a href="../pages/connexion.html">Connexion</a> -->
   </nav>
 
   <main class="container">
-
     <h1>Interface d’administration <br>
       Gestion des films et informations</h1>
-    <!-- FORMULAIRE -->
-     <section>
+
+    <!-- SECTION : formulaire d'ajout de film -->
+    <section>
       <div class="card">
+        <!-- Champs pour saisir les informations du film -->
         <input type="text" id="titre" placeholder="Nom du film" />
         <input type="text" id="resume" placeholder="Résumé du film" />
-        <input type="file" id="affiche" accept="image/*" />
+        <input type="text" id="affiche" placeholder="Nom du fichier image (ex: film.jpg)" />
         <input type="number" id="prix" placeholder="Prix en €" />
-        <button id="afficherBtn">Afficher</button>
+        <button id="afficherBtn">Afficher</button> <!-- Bouton pour ajouter le film -->
       </div>
     </section>
 
-    <!-- ZONE D’AFFICHAGE DES FILMS -->
-      <section class="film-liste">
-        <div id="filmsContainer" ></div>
-      </section>
+    <!-- SECTION : zone où les films seront affichés -->
+    <section class="film-liste">
+      <div id="filmsContainer"></div>
+    </section>
   </main>
 
   <script>
-
-    const defaultImage = "https://via.placeholder.com/120x180?text=Affiche";
-
-  
-    // Fonction pour convertir image en base64
-    function getBase64(file) {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = (error) => reject(error);
-      });
-    }
-
-    // Affichage initial des films
+    // Appelle afficherFilms() quand la page est chargée pour afficher les films déjà enregistrés
     window.onload = afficherFilms;
 
-    document.getElementById("afficherBtn").addEventListener("click", async () => {
+    // Gestion du clic sur le bouton "Afficher"
+    document.getElementById("afficherBtn").addEventListener("click", () => {
+      // Récupération des valeurs saisies
       const titre = document.getElementById("titre").value.trim();
-      const fichier = document.getElementById("affiche").files[0];
+      const affiche = document.getElementById("affiche").value.trim();
       const synopsis = document.getElementById("resume").value.trim();
       const prix = document.getElementById("prix").value.trim();
-      
 
-      if (!titre || !prix || !synopsis) {
+      // Vérifie que tous les champs sont remplis
+      if (!titre || !affiche || !prix || !synopsis) {
         alert("Veuillez remplir tous les champs.");
         return;
       }
 
-      let afficheBase64 = defaultImage;
+      // Création d’un objet film
+      const film = { titre, affiche, prix, synopsis };
 
-      if (fichier) {
-        try {
-          afficheBase64 = await getBase64(fichier);
-        } catch (error) {
-          console.error("Erreur de conversion d’image :", error);
-          alert("Erreur de chargement de l’image, une image par défaut sera utilisée.");
-        }
-      }
-
-      const film = { titre, affiche: afficheBase64, prix, synopsis };
+      // Récupère la liste actuelle des films depuis le localStorage
       const films = JSON.parse(localStorage.getItem("films")) || [];
+
+      // Ajoute le nouveau film à la liste
       films.push(film);
+
+      // Sauvegarde la nouvelle liste dans le localStorage
       localStorage.setItem("films", JSON.stringify(films));
+
+      // Met à jour l'affichage
       afficherFilms();
 
-      // Réinitialisation du formulaire
-      document.getElementById("affiche").value = "";
+      // Vide les champs du formulaire
       document.getElementById("titre").value = "";
       document.getElementById("resume").value = "";
+      document.getElementById("affiche").value = "";
       document.getElementById("prix").value = "";
-      
     });
 
+    // Fonction qui affiche tous les films depuis le localStorage
     function afficherFilms() {
       const films = JSON.parse(localStorage.getItem("films")) || [];
       const container = document.getElementById("filmsContainer");
-      container.innerHTML = "";
+      container.innerHTML = ""; // Vide le contenu avant de réafficher
 
       films.forEach((film, index) => {
         const div = document.createElement("div");
         div.className = "film";
+
+        // Création du contenu HTML pour chaque film
         div.innerHTML = `
-          <img src="${film.affiche}" alt="${film.titre}" />
+          <img src="../images/films/${film.affiche}" alt="${film.titre}" style="max-width: 150px; max-height: 200px;" />
           <h2>${film.titre}</h2>
-          <p> <span style="color:#1e90ff; font-weight: bold;"> Prix :</span> ${film.prix} €</p>
-          <p> <span style="color:#1e90ff; font-weight: bold;"> Résumé :</span> ${film.synopsis}</p>
+          <p><span style="color:#1e90ff; font-weight: bold;">Prix :</span> ${film.prix} €</p>
+          <p><span style="color:#1e90ff; font-weight: bold;">Résumé :</span> ${film.synopsis}</p>
           <button onclick="modifierFilm(${index})">Modifier</button>
           <button onclick="supprimerFilm(${index})">Supprimer</button>
         `;
-        container.appendChild(div);
+        container.appendChild(div); // Ajoute chaque film dans la page
       });
     }
 
+    // Supprime un film selon son index
     function supprimerFilm(index) {
       const films = JSON.parse(localStorage.getItem("films")) || [];
-      films.splice(index, 1);
-      localStorage.setItem("films", JSON.stringify(films));
-      afficherFilms();
+      films.splice(index, 1); // Supprime le film
+      localStorage.setItem("films", JSON.stringify(films)); // Met à jour le localStorage
+      afficherFilms(); // Réaffiche les films
     }
 
+    // Pré-remplit le formulaire avec les données d’un film pour modification
     function modifierFilm(index) {
       const films = JSON.parse(localStorage.getItem("films")) || [];
       const film = films[index];
+
+      // Remplit le formulaire avec les infos du film sélectionné
       document.getElementById("titre").value = film.titre;
       document.getElementById("prix").value = film.prix;
       document.getElementById("resume").value = film.synopsis;
-      // On ne peut pas recharger une image dans un input file
+      document.getElementById("affiche").value = film.affiche;
+
+      // Supprime l'ancien film pour qu'il soit remplacé par le nouveau après validation
       films.splice(index, 1);
       localStorage.setItem("films", JSON.stringify(films));
-      afficherFilms();
+      afficherFilms(); // Met à jour l'affichage
     }
   </script>
 </body>

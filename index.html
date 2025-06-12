@@ -61,7 +61,7 @@
               <div class="tab active" onclick="switchTab(0)">Connexion</div>
               <div class="tab" onclick="switchTab(1)">Devient membre ?</div>
             </div>
-            <!-- <span class="close-btn" onclick="closePopup()">x</span> -->
+            <span class="close-btn" onclick="closePopup()">x</span>
             <div class="popup-content" id="popupContent">
               <!-- Contenu par défaut (Connexion) -->
               <form>
@@ -70,8 +70,8 @@
                   <input type="email" id="login-email" required>
                 </div>
                 <div class="form-group">
-                  <label for="login-password">Mot de passe</label>
-                  <input type="password" id="login-password" required>
+                  <label for="login-motdepasse">Mot de passe</label>
+                  <input type="motdepasse" id="login-motdepasse" required>
                 </div>
                 <button class="btn">Connexion</button>
               </form>
@@ -274,8 +274,8 @@
             <input type="email" id="login-email" required>
           </div>
           <div class="form-group">
-            <label for="login-password">Mot de passe</label>
-            <input type="password" id="login-password" required>
+            <label for="login-motdepasse">Mot de passe</label>
+            <input type="motdepasse" id="login-motdepasse" required>
           </div>
           <button class="btn" type="submit">Connexion</button>
         </form>
@@ -284,12 +284,12 @@
       document.getElementById('popup-form-connexion').addEventListener('submit', function(e) {
         e.preventDefault();
         const email = document.getElementById('login-email').value;
-        const password = document.getElementById('login-password').value;
+        const motdepasse = document.getElementById('login-motdepasse').value;
 
         const user = localStorage.getItem('utilisateur_' + email);
         if (user) {
           const utilisateur = JSON.parse(user);
-          if (utilisateur.motdepasse === password) {
+          if (utilisateur.motdepasse === motdepasse) {
             // 🔐 Enregistrer l'utilisateur connecté
             localStorage.setItem("email_connecté", email);
             localStorage.setItem("nom", utilisateur.nom);
@@ -316,8 +316,8 @@
             <input type="email" id="signup-email" required>
           </div>
           <div class="form-group">
-            <label for="signup-password">Mot de passe</label>
-            <input type="password" id="signup-password" required>
+            <label for="signup-motdepasse">Mot de passe</label>
+            <input type="motdepasse" id="signup-motdepasse" required>
           </div>
           <button class="btn" type="submit">Inscription</button>
           <p id="message-inscription" style="margin-top:10px;"></p>
@@ -329,13 +329,13 @@
 
         const nom = document.getElementById('signup-name').value;
         const email = document.getElementById('signup-email').value;
-        const password = document.getElementById('signup-password').value;
+        const motdepasse = document.getElementById('signup-motdepasse').value;
 
-        if (nom && email && password) {
+        if (nom && email && motdepasse) {
           const utilisateur = {
             nom: nom,
             email: email,
-            motdepasse: password
+            motdepasse: motdepasse,
           };
 
           localStorage.setItem('utilisateur_' + email, JSON.stringify(utilisateur));
