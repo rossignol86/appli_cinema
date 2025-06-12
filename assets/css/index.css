@@ -366,10 +366,10 @@ main {
 /* TEXTE DESCRIPTION */
 .info-card p {
   padding: 1rem;
-  font-size: 0.95rem;
+  font-size: 1.1rem;
   color: #444;
   line-height: 1.5;
-  text-align: justify;
+  text-align: center;
 }
 
 /* LIEN FINAL */

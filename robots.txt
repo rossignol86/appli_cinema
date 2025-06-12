@@ -1,0 +1,11 @@
+# Autoriser tous les robots à indexer le site
+User-agent: *
+Allow: /
+
+# Bloquer l'accès au dossier admin si nécessaire
+Disallow: /admin.html
+Disallow: /adherent.html
+
+
+# Emplacement du sitemap (important pour le SEO)
+Sitemap: https://rossignol-franck-mini-cgr-fictif.sidathsoeun.fr/sitemap.xml

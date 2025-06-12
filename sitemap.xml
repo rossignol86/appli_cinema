@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Page d'accueil -->
+  <url>
+    <loc>https://rossignol-franck-mini-cgr-fictif.sidathsoeun.fr/index.hmlt</loc>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+
+  <!-- Page des films -->
+  <url>
+    <loc>https://rossignol-franck-mini-cgr-fictif.sidathsoeun.fr/assets/pages/films.html</loc>
+    <priority>0.9</priority>
+    <changefreq>daily</changefreq>
+  </url>
+
+  <!-- Page adhérent -->
+  <url>
+  <loc>https://rossignol-franck-mini-cgr-fictif.sidathsoeun.fr/assets/pages/adherent.html</loc>
+      <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <!-- Page admin -->
+  <url>
+  <loc>https://rossignol-franck-mini-cgr-fictif.sidathsoeun.fr/assets/pages/admin.html</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+    <!-- Page a propos-->
+  <url>
+  <loc>https://rossignol-franck-mini-cgr-fictif.sidathsoeun.fr/assets/pages/apropos.html</loc>
+    <priority>0.3</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+      <!-- Page CGV-->
+  <url>
+  <loc>https://rossignol-franck-mini-cgr-fictif.sidathsoeun.fr/assets/pages/cgv.html</loc>
+    <priority>0.3</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+      <!-- Page mentions legales-->
+  <url>
+  <loc>https://rossignol-franck-mini-cgr-fictif.sidathsoeun.fr/assets/pages/mentionslegales.html</loc>
+    <priority>0.3</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+
+</urlset>
