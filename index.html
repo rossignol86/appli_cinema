@@ -293,14 +293,24 @@
     <div>
       <span>
         <a href="https://rossignolfranck.alwaysdata.net/portfolio/" target="_blank">Franck Rossignol</a> – Maquette réalisé sur FIGMA – Développé sur Visual Studio Code <br>
-        Le cinéma "Le Petit Oiseau" – un site cinéma imaginé par Franck Rossignol avec CI/CD - Afpa <br>
-        &copy;Le Petit Oiseau - 2025 – Tous droits réservés – 
+        Le cinéma "CINESTAR" – un site dédé au cinéma imaginé par Franck Rossignol avec CI/CD - Afpa <br>
+        &copy;CINESTAR - 2025 – Tous droits réservés – 
         <a href="./assets/pages/apropos.html">À propos</a> –
         <a href="./assets/pages/mentionslegales.html">Mentions légales</a> –
         <a href="./assets/pages/cgv.html">Conditions générales</a>
       </span>
     </div>
   </footer>
+
+
+  <!-- Bannière RGPD de cookies -->
+  <div id="cookie-banner" class="cookie-banner">
+    <p>Ce site utilise des cookies pour améliorer votre expérience. 
+       <a href="/politique-confidentialite.html" target="_blank">En savoir plus</a>.
+    </p>
+    <button id="accept-cookies">Accepter</button>
+  </div>
+
 
 <script>
   function openPopup() {
@@ -434,6 +444,19 @@
     }
 
     animate();
+
+
+
+
+    // Vérifie si le consentement a déjà été donné
+    if (!localStorage.getItem("cookiesAccepted")) {
+      document.getElementById("cookie-banner").style.display = "block";
+    }
+
+    document.getElementById("accept-cookies").addEventListener("click", function () {
+      localStorage.setItem("cookiesAccepted", "true");
+      document.getElementById("cookie-banner").style.display = "none";
+    });
 </script>
 
 
