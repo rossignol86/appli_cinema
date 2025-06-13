@@ -47,6 +47,37 @@ p {
     line-height: 1.5rem;
 }
 
+.navbar {
+  display: flex;
+  background-color: #111;
+  padding: 1rem;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav-links a:hover,
+.nav-links a[aria-current="page"] {
+  color: #ffcc00;
+  text-decoration: underline;
+}
+
+
+
+
+
+
 /* Bandeau cinéma global */
 .cinema-banner {
     background: linear-gradient(to right, #000000, #1a1a1a);
