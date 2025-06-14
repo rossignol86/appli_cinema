@@ -5,6 +5,7 @@ body {
     background: url('../images/photos/battlefront_2_01_1920x1080.webp') no-repeat center center fixed;
     background-size: cover;
     color: #fff;
+    background-color: #000000;
 }
 
 h2 {
