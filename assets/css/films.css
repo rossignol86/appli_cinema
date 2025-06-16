@@ -1,70 +1,70 @@
-*{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
+
 body {
-    margin: 0;
-    padding: 0;
-    background: url('../images/photos/battlefront_2_01_1920x1080.webp') no-repeat center center fixed;
-    background-size: cover;
-    color: #fff;
-    background-color: #000000;
+  margin: 0;
+  padding: 0;
+  background: url('../images/photos/battlefront_2_01_1920x1080.webp') no-repeat center center fixed;
+  background-size: cover;
+  color: #fff;
+  background-color: #000;
+  font-family: "Inter", sans-serif;
+}
+
+/* TITRES GÉNÉRAUX */
+h2, h3, h4 {
+  font-family: 'WDXL Lubrifont TC', sans-serif;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 2px 2px 6px #000;
 }
 
 h2 {
-    font-family: 'WDXL Lubrifont TC', sans-serif;
-    font-size: 2rem;
-    line-height: 2rem;
-    font-weight: 900;
-    color:brown;
-    text-align: left;
+  font-size: 2rem;
+  line-height: 2.2rem;
+  color: brown;
+  text-align: left;
 }
 
 h3 {
-    font-family: 'WDXL Lubrifont TC', sans-serif;
-    font-size: 4rem;
-    line-height: 4rem;
-    font-weight: 900;
-    color:rgb(255, 255, 255);
-    text-align: center;
-    margin: 20px 0px 40px 0px;
-    text-shadow: 5px 5px 15px #ffe81f;
+  font-size: 4rem;
+  line-height: 4rem;
+  text-align: center;
+  margin: 20px 0 40px;
+  text-shadow: 5px 5px 15px #ffe81f;
 }
 
 h4 {
-    font-family: 'WDXL Lubrifont TC', sans-serif;
-    font-size: 3.5rem;
-    line-height: 3rem;
-    font-weight: 900;
-    color: rgb(255, 255, 255);
-    text-align: center;
-    margin: 20px 20px;
+  font-size: 3rem;
+  line-height: 3.5rem;
+  text-align: center;
+  margin: 20px;
 }
 
+/* PARAGRAPHES */
 p {
-    font-family: "Inter", sans-serif;
-    color: rgb(0, 0, 0);
-    text-decoration: none;
-    font-weight: 400;
-    text-align: left;
-    font-size: 2rem;
-    line-height: 1.5rem;
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+  font-weight: 400;
+  text-align: left;
+  color: #eee;
 }
 
+/* NAVBAR */
 .navbar {
   display: flex;
-  background-color: #000000;
+  background-color: #000;
   padding: 1rem;
+  justify-content: center;
 }
 
 .nav-links {
   list-style: none;
   display: flex;
   gap: 1.5rem;
-  margin: 0;
-  padding: 0;
 }
 
 .nav-links a {
@@ -79,132 +79,148 @@ p {
   text-decoration: underline;
 }
 
-
-
-
-
-
-/* Bandeau cinéma global */
+/* BLOC CINÉMA */
 .cinema-banner {
-    background: linear-gradient(to right, #000000, #1a1a1a);
-    color: #ffe81f;
-    padding: 2rem;
-    text-align: center;
-    border: 3px solid #ffe81f;
-    margin: 4rem auto;
-    max-width: 90%;
-    border-radius: 12px;
-    box-shadow: 0 0 15px #ffe81f;
-    font-family: 'Bebas Neue', 'Arial Black', sans-serif;
+  background: linear-gradient(to right, #000, #1a1a1a);
+  color: #ffe81f;
+  padding: 2rem;
+  text-align: center;
+  border: 3px solid #ffe81f;
+  margin: 4rem auto;
+  max-width: 90%;
+  border-radius: 12px;
+  box-shadow: 0 0 15px #ffe81f;
+  font-family: 'Bebas Neue', 'Arial Black', sans-serif;
 }
 
-/* Titre principal */
 .cinema-banner h1 {
-    font-size: 2.5rem;
-    line-height: 3.5rem;
-    margin-bottom: 1rem;
-    text-shadow: 2px 2px 5px #000;
-    margin-bottom: 2rem;
+  font-size: 2.5rem;
+  line-height: 3rem;
+  margin-bottom: 2rem;
+  text-shadow: 2px 2px 5px #000;
 }
 
-/* Slogan accrocheur */
 .cinema-banner h2 {
-    font-size: 1.5rem;
-    color: #ffffff;
-    background: #d10000;
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(209, 0, 0, 0.8);
-    text-transform: uppercase;
-    text-shadow: 2px 2px 5px #000;
+  font-size: 1.5rem;
+  color: #fff;
+  background: #d10000;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(209, 0, 0, 0.8);
+  text-transform: uppercase;
+  text-shadow: 2px 2px 5px #000;
 }
+
+
+
+
+/* SECTION FILMS */
+#filmsStactic {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 4rem;
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  padding: 0 1rem;
+}
+
 
 #filmsContainer {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 4rem;
-    width: 100%;
-    max-width: 1200px;
-    justify-items: center;
-    margin: 0 auto 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 4rem;
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  padding: 0 1rem;
 }
 
+#filmsContainer > h3 {
+  grid-column: 1 / -1;
+  text-align: center;
+}
+
+/* CARTE FILM */
 .film {
-    background-color: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    padding: 1rem;
-    transition: transform 0.3s, box-shadow 0.3s;
-    width: 380px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  padding: 1rem;
+  transition: transform 0.3s, box-shadow 0.3s;
+  width: 100%;
+  max-width: 380px;
+  color: #111;
 }
 
 .film:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
 }
 
 .film img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 1rem;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 1rem;
 }
 
 .film p {
-    font-size: 1.2rem;
-    color: #555;
-    margin: 0.5rem 0;
-    text-align: justify;
+  font-size: 1.1rem;
+  color: #333;
+  margin: 0.5rem 0;
+  text-align: justify;
 }
 
 .film strong {
-    color:brown;
+  color: brown;
 }
 
+/* QUANTITÉ + SELECTEUR */
 .quantite-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 1.5rem;
-    font-family: "Inter", sans-serif;
-    font-size: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+  font-size: 1rem;
 }
 
 .quantite-container label {
-    font-weight: bold;
-    color: #000000;
-    text-align: right;
-    font-size: 1.2rem;
+  font-weight: bold;
+  color: #000;
+  text-align: right;
+  font-size: 1rem;
 }
 
 .quantite-container select {
-    padding: 0.3rem;
-    font-size: 1rem;
-    border-radius: 6px;
+  padding: 0.3rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
 }
 
+/* PRIX TOTAL */
 .total {
-    font-size: 1.2rem;
-    font-weight: bold;
-    text-align: center;
-    color: #d10000;
-    font-family: "Inter", sans-serif;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  color: #d10000;
+  margin-top: 1rem;
 }
 
+/* BOUTON COMMANDER */
 .btn-commander {
-    width: 150px;
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 1rem;
-    font-weight: 600;
-    color: #fff;
-    background-color: #e50914;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    margin: 0 auto;
+  width: 150px;
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: #e50914;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin: 0 auto;
 }
 
 .btn-commander:hover {
@@ -219,7 +235,26 @@ p {
 .total-et-btn {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 10px;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  h3 {
+    font-size: 3rem;
+  }
+
+  .cinema-banner h1 {
+    font-size: 2rem;
+  }
+
+  .cinema-banner h2 {
+    font-size: 1.2rem;
+  }
+
+  .film {
+    width: 100%;
+  }
 }

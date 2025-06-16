@@ -45,12 +45,41 @@
 
   <main>
     <section class="cinema-banner">
-      <h1>CETTE SEMAINE <span style="font-family: 'Monoton', sans-serif; font-size: 55px;">CinéStar</span>  VOUS PROPOSE <br> l’aventure STAR WARS à vivre en famille ou entre amis</h1>
-      <h4>Réservez dès maintenant, les places sont limitées&nbsp;!</h4>
+        <h1>CETTE SEMAINE <span style="font-family: 'Monoton', sans-serif; font-size: 55px;">CinéStar</span>  VOUS PROPOSE <br> l’aventure STAR WARS à vivre en famille ou entre amis</h1>
+        <h4>Réservez dès maintenant, les places sont limitées&nbsp;!</h4>
     </section>
 
+    <div>
+      <h3>🎞️ Nos Films Coup de Coeur</h3>
+    </div>
+
+    <section id="filmsStactic">
+     
+    <div class="film">
+      <img src="../images/films/reveildelaforce.webp" alt="Affiche du film Le Réveil de la Force">
+      <p><strong>Titre :</strong> Le Réveil de la Force</p>
+      <p><strong>Genre :</strong> Science-fiction</p>
+      <p><strong>Résumé :</strong> Une nouvelle menace surgit tandis qu'un nouvel espoir renaît pour la galaxie.</p>
+    </div>
+
+    <div class="film">
+      <img src="../images/films/ldernierjedi.webp" alt="Affiche du film Le dernier JEDI">
+      <p><strong>Titre :</strong> Les Derniers Jedi</p>
+      <p><strong>Genre :</strong> Action / Aventure</p>
+      <p><strong>Résumé :</strong> La Résistance lutte pour sa survie tandis que Rey explore ses pouvoirs.</p>
+    </div>
+
+    <div class="film">
+      <img src="../images/films/lascensiondeskywalker.webp" alt="Affiche du film L'Ascension de Skywalker">
+      <p><strong>Titre :</strong> L’Ascension de Skywalker</p>
+      <p><strong>Genre :</strong> Fantastique</p>
+      <p><strong>Résumé :</strong> Le combat final pour la liberté oppose la Résistance aux forces obscures du Premier Ordre.</p>
+    </div>
+    </section>
+
+
     <section aria-labelledby="filmsContainerTitle">
-      <h3 id="filmsContainerTitle" class="sr-only">Liste des films disponibles</h3>
+      <h3 id="filmsContainerTitle" class="sr-only">🎞️ Liste des films bientôt disponibles</h3>
       <div id="filmsContainer" class="films-container"></div>
     </section>
   </main>
@@ -80,7 +109,7 @@ function afficherFilms() {
 
   // Si aucun film n'est enregistré, message d'information
   if (films.length === 0) {
-    container.innerHTML = "<p>Aucun film enregistré pour le moment.</p>";
+    container.innerHTML = "<p style='text-align:center; font-size:1.5rem; color:white; margin-top:2rem;'>Cher Adhérent une nouvelle saga sera disponible !</p>";
     return;
   }
 
@@ -128,7 +157,8 @@ function afficherFilms() {
     // Gestion du clic sur le bouton "COMMANDER"
     btnCommander.addEventListener("click", (event) => {
       event.preventDefault();
-      console.log("clique commande ok");            const quantite = parseInt(select.value);
+      console.log("clique commande ok");
+      const quantite = parseInt(select.value);
       if (quantite === 0) {
         alert("Veuillez sélectionner au moins 1 place.");
         return;
